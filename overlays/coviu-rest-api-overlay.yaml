@@ -1,0 +1,19 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Coviu REST API
+  version: 1.0.0
+extends: openapi/coviu-rest-api-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: coviu
+    x-apievangelist-industry: telehealth
+    x-apievangelist-compliance: [ISO 27001, HIPAA, FERPA]
+    x-apievangelist-webhooks: asyncapi/coviu-webhooks.yml
+    x-apievangelist-conventions: conventions/coviu-conventions.yml
+- target: $.components.securitySchemes.ClientCredentials
+  update:
+    x-apievangelist-note: >-
+      Coviu also documents authorizationCode and refreshToken OAuth2 grants at the same
+      /v1/auth/token endpoint (see llms.txt / access-token reference); the harvested spec only
+      declares clientCredentials.

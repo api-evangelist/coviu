@@ -1,0 +1,19 @@
+generated: '2026-07-24'
+method: searched
+probe: false
+url: https://www.coviu.com/en-au/compliance-and-security
+certifications:
+- ISO 27001
+- HIPAA
+- FERPA
+notes: >-
+  Coviu's compliance & security page documents HIPAA-aligned safeguards for ePHI with Business
+  Associate Agreements (BAAs) available to eligible customers, end-to-end encryption, US data
+  infrastructure, access controls, and audit logging. ISO 27001 certification (externally
+  audited by Global Compliance Certification) is announced on the Coviu blog. No public
+  responsible-disclosure / security.txt surface was found.
+evidence:
+- source: https://www.coviu.com/en-au/compliance-and-security
+  keywords: [hipaa, business associate agreement, ephi, encryption, audit logging]
+- source: https://www.coviu.com/en-au/resources/blog/a-commitment-to-security-and-privacy
+  keywords: [iso 27001, certification]

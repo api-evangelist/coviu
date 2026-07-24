@@ -1,0 +1,26 @@
+generated: '2026-07-24'
+method: searched
+host: https://api.coviu.com
+notes: No /.well-known discovery documents are published on the API host or the marketing host. Recorded for auditability.
+documents:
+- path: /.well-known/security.txt
+  host: https://api.coviu.com
+  status: 404
+- path: /.well-known/openid-configuration
+  host: https://api.coviu.com
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  host: https://api.coviu.com
+  status: 404
+- path: /.well-known/oauth-protected-resource
+  host: https://api.coviu.com
+  status: 404
+- path: /.well-known/api-catalog
+  host: https://api.coviu.com
+  status: 404
+- path: /.well-known/ai-plugin.json
+  host: https://api.coviu.com
+  status: 404
+- path: /.well-known/security.txt
+  host: https://www.coviu.com
+  status: 404

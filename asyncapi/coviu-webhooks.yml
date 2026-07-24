@@ -1,0 +1,51 @@
+generated: '2026-07-24'
+method: searched
+source: openapi/coviu-rest-api-openapi.json (POST /webhook oneOf payloads) + https://coviu.readme.io/reference/webhooks-documentation
+surface_type: webhooks
+transport: HTTP POST to a consumer-configured endpoint
+authentication: OAuth / custom-header authentication of the receiving endpoint (see webhook-authentication docs)
+delivery_semantics: at-most-once; no retry on failure; consumer must respond with a 2xx status to acknowledge
+docs: https://coviu.readme.io/reference/webhooks-documentation
+events:
+- name: WaitingAreaJoin
+  category: waiting-area
+  description: A participant joined the waiting area / arrived in a waiting room queue.
+- name: WaitingAreaAnswer
+  category: waiting-area
+  description: A waiting-area call was answered by a host/receptionist.
+- name: WaitingAreaLeave
+  category: waiting-area
+  description: A participant left the waiting area before being admitted.
+- name: WaitingAreaEndCall
+  category: waiting-area
+  description: A waiting-area call was ended.
+- name: CallUpdated
+  category: call
+  description: An active call's state or metadata changed.
+- name: CallEnd
+  category: call
+  description: A call concluded (last participant left / call completed).
+- name: CallTransfer
+  category: call
+  description: A call was transferred between queues or hosts.
+- name: ParticipantJoin
+  category: participant
+  description: A participant joined the session.
+- name: ParticipantLeave
+  category: participant
+  description: A participant left the session.
+- name: ParticipantOnHold
+  category: participant
+  description: A participant was placed on hold.
+- name: SessionCreate
+  category: session
+  description: A session was created.
+- name: SessionUpdate
+  category: session
+  description: A session was updated.
+- name: SessionCancel
+  category: session
+  description: A session was cancelled.
+- name: DataCollectionItemSaved
+  category: collection
+  description: A data-collection submission item was saved during a consultation.

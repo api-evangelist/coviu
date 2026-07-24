@@ -1,0 +1,69 @@
+generated: '2026-07-24'
+method: derived
+status: candidate
+source: openapi/coviu-rest-api-openapi.json
+notes: >-
+  No official hosted Coviu MCP server was found. This is a candidate tool surface derived one-to-one
+  from the Coviu REST OpenAPI operations, so an MCP server can be stood up with real inputSchemas
+  inherited from each backing operation (see mcp/coviu-tool-crosswalk.yml).
+server:
+  name: coviu
+  transport: http
+tools:
+- name: create_session
+  description: Create a Coviu video consultation session.
+  source_operation: openapi/coviu-rest-api-openapi.json#createSession
+- name: list_sessions
+  description: List sessions with pagination and time filters.
+  source_operation: openapi/coviu-rest-api-openapi.json#listSessions
+- name: get_session
+  description: Retrieve a session by id.
+  source_operation: openapi/coviu-rest-api-openapi.json#getSession
+- name: update_session
+  description: Update a session.
+  source_operation: openapi/coviu-rest-api-openapi.json#updateSession
+- name: cancel_session
+  description: Cancel a scheduled session.
+  source_operation: openapi/coviu-rest-api-openapi.json#cancelSession
+- name: get_session_summary
+  description: Get participant entry/exit timing summary for a session.
+  source_operation: openapi/coviu-rest-api-openapi.json#getSessionSummary
+- name: list_participants
+  description: List participants on a session.
+  source_operation: openapi/coviu-rest-api-openapi.json#listParticipants
+- name: add_participant
+  description: Add a participant to a session.
+  source_operation: openapi/coviu-rest-api-openapi.json#addParticipant
+- name: get_participant
+  description: Retrieve a participant by id.
+  source_operation: openapi/coviu-rest-api-openapi.json#getParticipant
+- name: update_participant
+  description: Update a participant.
+  source_operation: openapi/coviu-rest-api-openapi.json#updateParticipant
+- name: cancel_participant
+  description: Cancel a participant.
+  source_operation: openapi/coviu-rest-api-openapi.json#cancelParticipant
+- name: get_currently_waiting_calls
+  description: Read the currently waiting calls for a team.
+  source_operation: openapi/coviu-rest-api-openapi.json#getCurrentlyWaitingCalls
+- name: get_currently_waiting_calls_for_queue
+  description: Read the currently waiting calls for a specific queue.
+  source_operation: openapi/coviu-rest-api-openapi.json#getCurrentlyWaitingCallsForQueue
+- name: get_call
+  description: Get an individual waiting-area call by id.
+  source_operation: openapi/coviu-rest-api-openapi.json#getCall
+- name: get_collections
+  description: Retrieve the collections for a team.
+  source_operation: openapi/coviu-rest-api-openapi.json#getCollections
+- name: list_submissions
+  description: List the submissions for a collection.
+  source_operation: openapi/coviu-rest-api-openapi.json#listSubmissions
+- name: get_submission
+  description: Get a submission by id.
+  source_operation: openapi/coviu-rest-api-openapi.json#getSubmission
+- name: get_submission_file
+  description: Retrieve the binary file for a submission file.
+  source_operation: openapi/coviu-rest-api-openapi.json#getSubmissionFile
+- name: get_audio_recording
+  description: Retrieve the binary audio recording for a submission.
+  source_operation: openapi/coviu-rest-api-openapi.json#getAudioRecording

@@ -1,0 +1,15 @@
+generated: '2026-07-24'
+method: generated
+skills:
+- file: coviu-create-session-and-invite.md
+  name: Create a Coviu session and invite a participant
+  api: openapi/coviu-rest-api-openapi.json
+  operations: [access-token, createSession, addParticipant, getParticipant]
+- file: coviu-monitor-waiting-area.md
+  name: Monitor the Coviu waiting area
+  api: openapi/coviu-rest-api-openapi.json
+  operations: [access-token, getCurrentlyWaitingCalls, getCurrentlyWaitingCallsForQueue, getCall]
+- file: coviu-retrieve-collection-recordings.md
+  name: Retrieve Coviu collection submissions and recordings
+  api: openapi/coviu-rest-api-openapi.json
+  operations: [access-token, getCollections, listSubmissions, getSubmission, getSubmissionFile, getAudioRecording]

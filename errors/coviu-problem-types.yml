@@ -1,0 +1,30 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/coviu-rest-api-openapi.json
+format: http-status
+notes: >-
+  Coviu's OpenAPI documents a single explicit error status (400 Bad Request) plus a 206 Partial
+  Content success case for paginated/partial reads; it does not use RFC 9457 problem+json. The
+  entries below are the HTTP-status contract derived from the spec and enriched with the standard
+  Coviu REST auth/authorization semantics documented at coviu.readme.io.
+problems:
+- status: 400
+  title: Bad Request
+  meaning: The request was malformed, missing a required field, or contained an invalid value.
+  source_operation: openapi/coviu-rest-api-openapi.json (multiple operations declare 400)
+- status: 401
+  title: Unauthorized
+  meaning: Missing, expired, or invalid OAuth2 access token; request an access token from /v1/auth/token.
+  remediation: Re-authenticate via the client_credentials (or authorization_code/refresh_token) grant.
+- status: 403
+  title: Forbidden
+  meaning: The authenticated client is not permitted to access the requested team, session, or resource.
+- status: 404
+  title: Not Found
+  meaning: The referenced session, participant, collection, submission, file, or call does not exist.
+- status: 429
+  title: Too Many Requests
+  meaning: Client has exceeded the API rate limit.
+- status: 500
+  title: Internal Server Error
+  meaning: An unexpected error occurred on the Coviu side.

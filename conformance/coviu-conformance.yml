@@ -1,0 +1,26 @@
+generated: '2026-07-24'
+method: searched
+source: openapi/coviu-rest-api-openapi.json + https://www.coviu.com/en-au/compliance-and-security
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OpenAPI securitySchemes declares oauth2 (clientCredentials) + http basic; token endpoint /v1/auth/token
+- id: hipaa
+  conforms: true
+  evidence: Coviu publishes HIPAA-aligned safeguards for ePHI and offers Business Associate Agreements (BAAs) to eligible customers
+- id: iso-27001
+  conforms: true
+  evidence: Coviu achieved ISO 27001 certification, externally audited by Global Compliance Certification (GCC)
+- id: ferpa
+  conforms: true
+  evidence: Coviu documents FERPA compliance for education-sector deployments
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: error responses documented as plain 400 without application/problem+json media type
+- id: fhir-r4
+  conforms: false
+  evidence: Coviu is a telehealth video/interoperability layer, not an HL7 FHIR data platform
+- id: scim
+  conforms: false
+- id: json-api
+  conforms: false

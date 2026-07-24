@@ -163,6 +163,44 @@ apis:
   - type: APIReference
     url: https://coviu.readme.io/reference/api-object-1
 common:
+- type: DomainSecurity
+  url: security/coviu-domain-security.yml
+- type: OAuthScopes
+  url: scopes/coviu-scopes.yml
+- type: AgenticAccess
+  url: agentic-access/coviu-agentic-access.yml
+- type: Authentication
+  url: authentication/coviu-authentication.yml
+- type: Packages
+  url: packages/coviu-packages.yml
+- type: SDKs
+  url: packages/coviu-packages.yml
+- type: LLMsTxt
+  url: llms/coviu-llms.txt
+- type: MCPServer
+  url: mcp/coviu-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/coviu-tool-crosswalk.yml
+- type: Overlay
+  url: overlays/coviu-rest-api-overlay.yaml
+- type: Conventions
+  url: conventions/coviu-conventions.yml
+- type: ErrorCatalog
+  url: errors/coviu-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/coviu-lifecycle.yml
+- type: Webhooks
+  url: asyncapi/coviu-webhooks.yml
+- type: Conformance
+  url: conformance/coviu-conformance.yml
+- type: Compliance
+  url: https://www.coviu.com/en-au/compliance-and-security
+- type: TrustCenter
+  url: security/coviu-trust-center.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/coviu-data-model.yml
 - type: Website
   url: https://www.coviu.com/
 - type: DeveloperPortal
@@ -181,6 +219,8 @@ common:
   url: https://status.coviu.com/
 - type: Pricing
   url: https://www.coviu.com/en-au/pricing
+- type: SignUp
+  url: https://signup.coviu.com/
 - type: Blog
   url: https://www.coviu.com/blog
 - type: Support

@@ -1,0 +1,38 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/coviu-rest-api-openapi.json + https://coviu.readme.io
+authentication:
+  style: oauth2
+  flows: [clientCredentials, authorizationCode, refreshToken]
+  token_endpoint: https://api.coviu.com/v1/auth/token
+  client_auth: HTTP Basic (Client ID as username, Client Secret as password)
+  transport: Bearer access token on subsequent requests
+  see: authentication/coviu-authentication.yml
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header or parameter is documented in the OpenAPI or reference docs.
+    Webhook deliveries are at-most-once (Coviu does not retry on failure), so consumers must
+    make their own receive-side handling idempotent.
+pagination:
+  style: offset
+  params: [offset, limit, page, page_size, order, orderBy, filter, from, until, start_time, end_time, state]
+  notes: >-
+    List endpoints (listSessions, listParticipants) are paginated. Default order is chronological
+    by creation time (oldest first); order=reverse returns newest first. Time-window filters
+    (start_time/end_time) switch ordering to session start time. A 206 Partial Content response
+    is returned for partial/ranged reads.
+metadata:
+  notes: Sessions and participants accept custom fields and session feature_flags (plugin toggles, UI customisation, exit/return URLs).
+versioning:
+  style: uri-path
+  current: v1
+  see: lifecycle/coviu-lifecycle.yml
+error_envelope:
+  format: http-status
+  problem_json: false
+  see: errors/coviu-problem-types.yml
+webhooks:
+  delivery: HTTP POST to a consumer-configured URL
+  retry: none (no retry on failure; respond 2xx to acknowledge)
+  see: asyncapi/coviu-webhooks.yml

@@ -1,0 +1,17 @@
+generated: '2026-07-24'
+method: searched
+source: openapi/coviu-rest-api-openapi.json + https://coviu.readme.io + https://status.coviu.com/
+versioning:
+  scheme: uri-path
+  current: v1
+  base: https://api.coviu.com/v1
+  docs: https://coviu.readme.io/reference/the-coviu-rest-api
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No public deprecation policy or RFC 8594 Sunset/Deprecation header support was found.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.coviu.com/
+deprecated_operations: []

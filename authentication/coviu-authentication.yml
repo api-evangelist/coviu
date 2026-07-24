@@ -1,0 +1,41 @@
+generated: '2026-07-24'
+method: searched
+source: openapi/coviu-rest-api-openapi.json
+docs: https://coviu.readme.io/reference/access-token
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+  - authorizationCode
+  - refreshToken
+notes: >-
+  The Coviu access-token reference (coviu.readme.io/reference/access-token) documents three OAuth2
+  grant types at POST /v1/auth/token — client_credentials, authorization_code, and refresh_token —
+  all authenticated with HTTP Basic (Client ID as username, Client Secret as password) and an
+  application/x-www-form-urlencoded body. The harvested OpenAPI only declares the clientCredentials
+  flow, so the authorizationCode and refreshToken flows are sourced from the docs.
+schemes:
+- name: Basic
+  type: http
+  scheme: basic
+  description: Used to request an access token. Supply the Client ID and Client Secret as the
+    username and password.
+  sources:
+  - openapi/coviu-rest-api-openapi.json
+- name: ClientCredentials
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/auth/token
+    scopes: 0
+  - flow: authorizationCode
+    tokenUrl: /v1/auth/token
+    source: https://coviu.readme.io/reference/access-token
+  - flow: refreshToken
+    tokenUrl: /v1/auth/token
+    source: https://coviu.readme.io/reference/access-token
+  sources:
+  - openapi/coviu-rest-api-openapi.json
+  - https://coviu.readme.io/reference/access-token

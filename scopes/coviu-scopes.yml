@@ -1,0 +1,10 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/coviu-rest-api-openapi.json
+schemes:
+- name: ClientCredentials
+  source: openapi/coviu-rest-api-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/auth/token
+scopes: []

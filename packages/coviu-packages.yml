@@ -1,0 +1,42 @@
+generated: '2026-07-24'
+method: searched
+source: npm registry search + Packagist; github.com/coviu
+packages:
+- language: javascript
+  registry: npm
+  name: coviu-js-sdk
+  url: https://www.npmjs.com/package/coviu-js-sdk
+  install: npm install coviu-js-sdk
+  repository: https://github.com/coviu/coviu-js-sdk
+  description: Top-level Coviu API JavaScript client library.
+  official: true
+- language: javascript
+  registry: npm
+  name: "@coviu/coviu-sdk-api"
+  url: https://www.npmjs.com/package/@coviu/coviu-sdk-api
+  install: npm install @coviu/coviu-sdk-api
+  description: Interface methods for the Coviu API.
+  official: true
+- language: javascript
+  registry: npm
+  name: coviu-sdk-http
+  url: https://www.npmjs.com/package/coviu-sdk-http
+  install: npm install coviu-sdk-http
+  repository: https://github.com/coviu/coviu-sdk-http
+  description: DSL for constructing HTTP requests against the Coviu API.
+  official: true
+- language: javascript
+  registry: npm
+  name: coviu-sdk-oauth2
+  url: https://www.npmjs.com/package/coviu-sdk-oauth2
+  install: npm install coviu-sdk-oauth2
+  description: OAuth2 client for the Coviu API.
+  official: true
+- language: php
+  registry: packagist
+  name: coviu/coviu-sdk
+  url: https://packagist.org/packages/coviu/coviu-sdk
+  install: composer require coviu/coviu-sdk
+  repository: https://github.com/coviu/coviu-php-sdk
+  description: A simple library to use the Coviu API.
+  official: true

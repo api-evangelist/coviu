@@ -1,0 +1,49 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/coviu-rest-api-openapi.json
+entities:
+- name: Session
+  description: A video consultation session.
+  id: session_id
+- name: Participant
+  description: A person (host or guest) on a session, with a join link and role.
+  id: participant_id
+- name: Call
+  description: A live/queued call as seen in the waiting area of a team.
+  id: callId
+- name: Collection
+  description: A team-level container of data-collection submissions.
+  id: collectionId
+- name: Submission
+  description: A submission captured during a consultation.
+  id: submissionId
+- name: SubmissionFile
+  description: A binary file attached to a submission.
+  id: fileId
+- name: AudioRecording
+  description: An audio recording captured during a call, retrieved per submission.
+relationships:
+- from: Session
+  to: Participant
+  type: has_many
+  via: session_id
+- from: Participant
+  to: Session
+  type: belongs_to
+  via: session_id
+- from: Team
+  to: Collection
+  type: has_many
+  via: teamId
+- from: Collection
+  to: Submission
+  type: has_many
+  via: collectionId
+- from: Submission
+  to: SubmissionFile
+  type: has_many
+  via: submissionId
+- from: Team
+  to: Call
+  type: has_many
+  via: teamId

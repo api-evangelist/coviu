@@ -1,0 +1,40 @@
+generated: '2026-07-24'
+method: derived
+source: mcp/coviu-mcp.yml (candidate) + openapi/coviu-rest-api-openapi.json
+notes: >-
+  Coviu has no hosted MCP server or GraphQL surface; this crosswalk binds the candidate MCP tools
+  (derived from REST operations) to their backing OpenAPI operationIds so each tool inherits a real
+  inputSchema. High confidence throughout because every tool maps 1:1 to a documented REST operation.
+surfaces:
+  openapi: openapi/coviu-rest-api-openapi.json
+  graphql: null
+  mcp: candidate (no hosted server; derived from OpenAPI)
+crosswalk:
+- {tool: create_session, category: sessions, rest: [createSession], binding: rest, confidence: high}
+- {tool: list_sessions, category: sessions, rest: [listSessions], binding: rest, confidence: high}
+- {tool: get_session, category: sessions, rest: [getSession], binding: rest, confidence: high}
+- {tool: update_session, category: sessions, rest: [updateSession], binding: rest, confidence: high}
+- {tool: cancel_session, category: sessions, rest: [cancelSession], binding: rest, confidence: high}
+- {tool: get_session_summary, category: sessions, rest: [getSessionSummary], binding: rest, confidence: high}
+- {tool: list_participants, category: participants, rest: [listParticipants], binding: rest, confidence: high}
+- {tool: add_participant, category: participants, rest: [addParticipant], binding: rest, confidence: high}
+- {tool: get_participant, category: participants, rest: [getParticipant], binding: rest, confidence: high}
+- {tool: update_participant, category: participants, rest: [updateParticipant], binding: rest, confidence: high}
+- {tool: cancel_participant, category: participants, rest: [cancelParticipant], binding: rest, confidence: high}
+- {tool: get_currently_waiting_calls, category: waiting-area, rest: [getCurrentlyWaitingCalls], binding: rest, confidence: high}
+- {tool: get_currently_waiting_calls_for_queue, category: waiting-area, rest: [getCurrentlyWaitingCallsForQueue], binding: rest, confidence: high}
+- {tool: get_call, category: waiting-area, rest: [getCall], binding: rest, confidence: high}
+- {tool: get_collections, category: collections, rest: [getCollections], binding: rest, confidence: high}
+- {tool: list_submissions, category: collections, rest: [listSubmissions], binding: rest, confidence: high}
+- {tool: get_submission, category: collections, rest: [getSubmission], binding: rest, confidence: high}
+- {tool: get_submission_file, category: collections, rest: [getSubmissionFile], binding: rest, confidence: high}
+- {tool: get_audio_recording, category: collections, rest: [getAudioRecording], binding: rest, confidence: high}
+mcp_only: []
+rest_only:
+- {operation: access-token, reason: OAuth2 token acquisition handled by the MCP client transport, not exposed as a tool}
+coverage:
+  tools_named: 19
+  tools_bound: 19
+  mcp_only: 0
+  rest_ops_total: 21
+  rest_ops_with_tool: 19
