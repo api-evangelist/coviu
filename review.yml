@@ -1,0 +1,158 @@
+aid: coviu
+name: Coviu
+review:
+  question: Does Coviu expose a documented public API, and is it FHIR/HL7-based?
+  answer: true
+  date: '2026-07-24'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Coviu, an Australian (Sydney) telehealth company spun out of CSIRO's Data61,
+    publishes a documented, self-serve developer surface for its video
+    consultation platform. The developer portal is a ReadMe-hosted hub at
+    https://coviu.readme.io/ (HTTP 200). The public API is a REST + Webhooks
+    surface — NOT HL7 FHIR. Coviu is a telehealth video/interoperability layer,
+    not an EHR or clinical-data repository, so no FHIR CapabilityStatement or
+    SMART-on-FHIR configuration is served (see probes below). A complete OpenAPI
+    3.0.0 definition was harvested from the portal and saved verbatim.
+  homeMarket: Australia
+  developerPortal:
+    url: https://coviu.readme.io/
+    status: 200
+    confirmed: true
+    host: readme.io (Coviu Apps / Coviu REST API)
+    note: >-
+      developer.coviu.com resolves (200) but serves Coviu's marketing SPA 404
+      catch-all, not a developer portal. The real portal is the ReadMe hub.
+  apiBaseURL: https://api.coviu.com
+  fhir:
+    isFhir: false
+    capabilityStatementFound: false
+    smartConfigurationFound: false
+    note: >-
+      Coviu does not expose an HL7 FHIR API. Probes returned no real conformance
+      surface — see probesFhir. Any FHIR/EHR interoperability is via partner EHR
+      integrations at the product layer, not a public FHIR endpoint.
+  authModel:
+    scheme: OAuth2
+    grants:
+    - client_credentials
+    - authorization_code
+    - refresh_token
+    clientAuth: HTTP Basic (Client ID as username, Client Secret as password)
+    tokenEndpoint: https://api.coviu.com/v1/auth/token
+    scopes: none documented (empty scopes object in the OpenAPI securityScheme)
+    smartOnFhir: false
+    note: >-
+      Access tokens are requested from POST /v1/auth/token using HTTP Basic with
+      the Client ID/Secret. The OpenAPI declares two security schemes: `Basic`
+      (http basic, for the token request) and `ClientCredentials` (oauth2
+      clientCredentials flow, tokenUrl /v1/auth/token).
+  standardsConformance:
+    usCore: false
+    ukCore: false
+    auCore: false
+    daVinci: false
+    carin: false
+    note: >-
+      Not applicable — Coviu is a WebRTC telehealth video platform, not a FHIR
+      clinical-data API, so no US Core / AU Core / Da Vinci / CARIN IG
+      conformance applies.
+  accessPosture:
+    gated: false
+    selfServe: true
+    note: >-
+      Documentation is fully public on the ReadMe portal. API credentials are
+      obtained through a Coviu account/subscription (paid plans, free trial
+      available); no partner gate blocks reading the docs or the OpenAPI.
+  specsHarvested:
+    count: 1
+    specs:
+    - file: openapi/coviu-rest-api-openapi.json
+      format: OpenAPI 3.0.0
+      title: Coviu REST API
+      paths: 15
+      schemas: 33
+      securitySchemes:
+      - Basic
+      - ClientCredentials
+      provenance: >-
+        Reconstructed verbatim by extracting the embedded OpenAPI 3.0.0 JSON
+        fragment from each Coviu ReadMe reference page (.md source) across the
+        Auth, Sessions, Participants, Waiting Area, Collections, and Webhooks
+        endpoint groups, then merging the real path, schema, and securityScheme
+        objects into one document. No paths, endpoints, or schemas were invented
+        — every object was harvested from https://coviu.readme.io/reference/*.md.
+        The portal advertises this OpenAPI index at
+        https://coviu.readme.io/llms.txt.
+  apiFamilies:
+  - Sessions (create/list/get/update/cancel/summary)
+  - Participants (list/add/get/update/cancel)
+  - Waiting Area (waiting calls, per-queue calls, call detail)
+  - Collections (collections, submissions, submission files, audio recordings)
+  - Webhooks (event callbacks)
+  - Plugin API (in-call Apps / UI extensions — client-side, no REST spec)
+transports:
+- protocol: REST
+  scheme: https
+  baseURL: https://api.coviu.com
+  documented: true
+- protocol: Webhook
+  scheme: https
+  note: Outbound HTTP POST callbacks to a consumer-configured URL; documented event payloads.
+  documented: true
+- protocol: FHIR
+  scheme: https
+  documented: false
+  note: No FHIR REST surface, CapabilityStatement, or SMART-on-FHIR configuration is served.
+probes:
+- url: https://coviu.readme.io/
+  status: 200
+  note: Developer portal (ReadMe) — confirmed live.
+- url: https://coviu.readme.io/llms.txt
+  status: 200
+  note: Portal-published index of docs pages and OpenAPI endpoints.
+- url: https://api.coviu.com/v1/sessions
+  status: 401
+  note: Live API base, auth required (confirms https://api.coviu.com/v1 is real).
+- url: https://www.coviu.com/en-au/api
+  status: 200
+  note: Marketing API landing page (REST API, Webhooks, Data API, Plugin API, Embedded Mode).
+- url: https://github.com/coviu
+  status: 200
+  note: Coviu GitHub organization exists.
+- url: https://status.coviu.com/
+  status: 200
+  note: Status page.
+probesFhir:
+- url: https://fhir.coviu.com/metadata
+  status: 200
+  note: NOT a FHIR CapabilityStatement — returns Coviu's marketing SPA 404 HTML (text/html), a wildcard catch-all. No FHIR server here.
+- url: https://api.coviu.com/.well-known/smart-configuration
+  status: 404
+  note: No SMART-on-FHIR configuration served.
+- url: https://api.coviu.com/.well-known/openid-configuration
+  status: 404
+  note: No OIDC discovery document served.
+sources:
+- url: https://coviu.readme.io/reference/the-coviu-rest-api
+  type: APIReference
+- url: https://coviu.readme.io/reference/access-token
+  type: Authentication
+  note: OAuth2 grants (client_credentials, authorization_code, refresh_token) via HTTP Basic; tokenUrl /v1/auth/token.
+- url: https://www.coviu.com/en-au/api
+  type: Documentation
+  note: Product-level API & Webhooks overview.
+- url: https://coviu.readme.io/llms.txt
+  type: LLMsTxt
+  note: AI index advertising docs pages and OpenAPI endpoints.
+actions:
+  openapiPath: openapi/coviu-rest-api-openapi.json
+  apisYmlCreated: true
+  reason: |
+    Coviu ships a real, documented, self-serve REST + Webhooks API for its
+    telehealth video platform. Six API families were modeled as apis[] entries,
+    a single merged OpenAPI 3.0.0 (15 paths / 33 schemas) was harvested verbatim
+    from the ReadMe portal, and the OAuth2 (HTTP Basic client-credentials) auth
+    model was recorded. No FHIR surface exists, which is correct for a telehealth
+    video vendor rather than an EHR/clinical-data platform.

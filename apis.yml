@@ -1,0 +1,194 @@
+aid: coviu
+url: https://raw.githubusercontent.com/api-evangelist/coviu/refs/heads/main/apis.yml
+name: Coviu
+kind: company
+description: >-
+  Coviu is an Australian telehealth company, headquartered in Sydney and spun out of
+  CSIRO's Data61, that provides a purpose-built video consultation platform for healthcare
+  providers, allied health, and enterprise clinical networks. Its browser-based, WebRTC
+  video calling supports virtual care workflows including waiting rooms, in-call clinical
+  tools, screen and file sharing, medical device integrations, and payments. For developers,
+  Coviu ships a secure OAuth2-protected REST API (base https://api.coviu.com) that lets
+  applications create and manage video consultation Sessions and Participants, monitor
+  Waiting Area queues in real time, retrieve Collections (submissions, files, and audio
+  recordings), and receive event Webhooks, plus an in-call Plugin API and embedded iframe
+  mode. Coviu is a telehealth video/interoperability layer rather than an EHR or FHIR data
+  platform, so its documented public surface is REST + webhooks, not HL7 FHIR.
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: true
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  - plans
+  generated: '2026-07-24'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Healthcare
+- Telehealth
+- Australia
+- Virtual Care
+- Video
+- WebRTC
+- Appointments
+- Remote Monitoring
+- REST
+created: '2026-07-24'
+modified: '2026-07-24'
+specificationVersion: '0.19'
+apis:
+- aid: coviu:coviu-sessions-api
+  name: Coviu Sessions API
+  description: >-
+    Create, list, retrieve, update, and cancel Coviu video consultation Sessions, and
+    pull a Session Summary with participant entry/exit timing. OAuth2-authenticated REST
+    over https://api.coviu.com/v1.
+  humanURL: https://coviu.readme.io/reference/sessions
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Telehealth
+  - Sessions
+  - Video
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-rest-api-openapi.json
+  - type: Documentation
+    url: https://coviu.readme.io/reference/sessions
+  - type: APIReference
+    url: https://coviu.readme.io/reference/createsession
+  - type: Authentication
+    url: https://coviu.readme.io/reference/access-token
+- aid: coviu:coviu-participants-api
+  name: Coviu Participants API
+  description: >-
+    List, add, retrieve, update, and cancel Participants on a Coviu Session, controlling
+    the per-participant join links, names, avatars, and host/guest roles.
+  humanURL: https://coviu.readme.io/reference/listparticipants
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Telehealth
+  - Participants
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-rest-api-openapi.json
+  - type: Documentation
+    url: https://coviu.readme.io/reference/listparticipants
+  - type: APIReference
+    url: https://coviu.readme.io/reference/addparticipant
+  - type: Authentication
+    url: https://coviu.readme.io/reference/access-token
+- aid: coviu:coviu-waiting-area-api
+  name: Coviu Waiting Area API
+  description: >-
+    Read the Waiting Area in real time — currently waiting calls for a team, waiting calls
+    for a specific queue, and individual call detail — for virtual reception and triage
+    workflows.
+  humanURL: https://coviu.readme.io/reference/getcurrentlywaitingcalls
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Telehealth
+  - Waiting Area
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-rest-api-openapi.json
+  - type: Documentation
+    url: https://coviu.readme.io/reference/getcurrentlywaitingcalls
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcall
+  - type: Authentication
+    url: https://coviu.readme.io/reference/access-token
+- aid: coviu:coviu-collections-api
+  name: Coviu Collections API
+  description: >-
+    Retrieve a team's Collections and their Submissions, including submission files and
+    audio recordings captured during consultations, for downstream clinical record-keeping
+    and reporting.
+  humanURL: https://coviu.readme.io/reference/collections
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Telehealth
+  - Collections
+  - Recordings
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-rest-api-openapi.json
+  - type: Documentation
+    url: https://coviu.readme.io/reference/collections
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcollections
+  - type: Authentication
+    url: https://coviu.readme.io/reference/access-token
+- aid: coviu:coviu-webhooks
+  name: Coviu Webhooks
+  description: >-
+    Real-time event notifications delivered as HTTP POST callbacks to a URL you configure,
+    firing when relevant Coviu events occur (for example a patient arriving in the waiting
+    room or a call concluding). Supports OAuth/custom-header authentication of your endpoint.
+  humanURL: https://coviu.readme.io/reference/webhooks-documentation
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Telehealth
+  - Webhooks
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-rest-api-openapi.json
+  - type: Documentation
+    url: https://coviu.readme.io/reference/webhooks-documentation
+  - type: APIReference
+    url: https://coviu.readme.io/reference/post_webhook
+  - type: Authentication
+    url: https://coviu.readme.io/reference/webhook-authentication
+- aid: coviu:coviu-plugin-api
+  name: Coviu Plugin API
+  description: >-
+    In-call Plugin (Apps) API for building custom experiences inside the Coviu video room —
+    adding UI elements, connecting to third-party systems, and enriching the clinical
+    encounter. Documented as a client-side extension surface rather than a REST endpoint set.
+  humanURL: https://coviu.readme.io/reference/getting-started-with-your-api-1
+  tags:
+  - Telehealth
+  - Plugins
+  - In-Call
+  properties:
+  - type: Documentation
+    url: https://coviu.readme.io/reference/getting-started-with-your-api-1
+  - type: Documentation
+    url: https://coviu.readme.io/reference/technical-documentation-1
+  - type: APIReference
+    url: https://coviu.readme.io/reference/api-object-1
+common:
+- type: Website
+  url: https://www.coviu.com/
+- type: DeveloperPortal
+  url: https://coviu.readme.io/
+- type: Documentation
+  url: https://coviu.readme.io/reference/the-coviu-rest-api
+- type: APIReference
+  url: https://coviu.readme.io/reference/the-coviu-rest-api
+- type: GettingStarted
+  url: https://coviu.readme.io/reference/getting-started-with-your-api-1
+- type: GitHubOrganization
+  url: https://github.com/coviu
+- type: LinkedIn
+  url: https://www.linkedin.com/company/coviu
+- type: StatusPage
+  url: https://status.coviu.com/
+- type: Pricing
+  url: https://www.coviu.com/en-au/pricing
+- type: Blog
+  url: https://www.coviu.com/blog
+- type: Support
+  url: https://help.coviu.com/
+- type: TermsOfService
+  url: https://www.coviu.com/terms
+- type: PrivacyPolicy
+  url: https://www.coviu.com/en-au/privacy-policy
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
