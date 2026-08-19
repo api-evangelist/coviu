@@ -1,0 +1,587 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Coviu REST API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coviu.com/v1/auth/token",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Request an access token using one of the supported OAuth2 grant types:\n## Client Credentials \n\n  - HTTP Basic Auth, passing the Client ID and Client Secret as the username and password\n\n  - `application/x-www-form-urlencoded` data, containing:\n\n    - `{ grant_type: \"client_credentials\" }`\n\n\n## Authorization Code\n\n  - HTTP Basic Auth, passing the Client ID and Client Secret as the username and password\n\n  - `application/x-www-form-urlencoded` data, containing:\n\n    - ```\n      { \n        grant_ty"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/sessions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero based index"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to return"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Include sessions whose start time falls after the given start time"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "Include sessions whose end time falls before the given end time"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Orders the returned sessions"
+              },
+              {
+                "name": "include_canceled",
+                "value": "",
+                "type": "query",
+                "description": "Include sessions that have been cancelled."
+              },
+              {
+                "name": "deleted_participants",
+                "value": "",
+                "type": "query",
+                "description": "Include participants that have been removed from the session."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Limit the response to sessions with participants with specific state value."
+              }
+            ]
+          },
+          "docs": "List Sessions"
+        },
+        {
+          "info": {
+            "name": "Create a Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coviu.com/v1/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "There are some further options you are able to pass through a \"feature_flags\" field when creating a session. These allow some customisation of the interface\n\n## Custom features for Sessions\n\nCustom feature can be added while creating a Session and it can be done by passing values into the feature_flags array.\n\n**Example Feature Flags option** \n\n```text\nfeature_flags: [\n\n    '-plugin;coviu-waiting-room-plugin',\n\n    '-plugin;coviu-stripe-payments-resource-plugin',\n\n    'customisation;disable-menu"
+        },
+        {
+          "info": {
+            "name": "Get a Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/sessions/:session_id",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a Session"
+        },
+        {
+          "info": {
+            "name": "Update a Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.coviu.com/v1/sessions/:session_id",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Session"
+        },
+        {
+          "info": {
+            "name": "Cancel a Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.coviu.com/v1/sessions/:session_id",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a Session"
+        },
+        {
+          "info": {
+            "name": "Get Session Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/sessions/:session_id/summary",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Here is some further information on the timestamps provided in the response:\n\n- Start time - Scheduled start time for the session\n- End time - Scheduled end time for the session\n- Actual start time - Creation time of the call, typically when host has joined\n- Actual end time - Call recorded as complete, last participant has left\n- Participant entry time - Earliest recorded entry time for the participant, does not include time in Waiting Room\n- Participant exit time - Latest recorded exit time fo"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Participants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Participants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/sessions/:session_id/participants",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deleted_participants",
+                "value": "",
+                "type": "query",
+                "description": "Include participants that have been removed from the session."
+              }
+            ]
+          },
+          "docs": "By default, the returned order is paginated with the first page containing the created sessions in chronological order (oldest created first). If you set the \"order\" parameter to \"reverse\", the newest created sessions will be returned.\n\nYou can filter sessions by start and end time, at which stage the returned result list is ordered by start time in chronological order (rather than by creation time). The \"order\" parameter allows you to reverse this order to retrieve sessions by start time with t"
+        },
+        {
+          "info": {
+            "name": "Add Participant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coviu.com/v1/sessions/:session_id/participants",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deleted_participants",
+                "value": "",
+                "type": "query",
+                "description": "Include participants that have been removed from the session."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "It is sometimes useful to add a participant to a session after the session has been created. It is possible to add a participant to a session that has already started, but not to a session that has already finished.\n"
+        },
+        {
+          "info": {
+            "name": "Get Participant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/participants/:participant_id",
+            "params": [
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Participant"
+        },
+        {
+          "info": {
+            "name": "Update Participant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.coviu.com/v1/participants/:participant_id",
+            "params": [
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Participant"
+        },
+        {
+          "info": {
+            "name": "Cancel a Participant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.coviu.com/v1/participants/:participant_id",
+            "params": [
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "A session that is scheduled for the future may be canceled. No participants will be able to join the session after it has been canceled, and it can not be uncanceled once it has been canceled. A session that has already started may not be canceled.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Waiting Area",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Currently Waiting Calls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/waiting/:teamId",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Currently Waiting Calls"
+        },
+        {
+          "info": {
+            "name": "Get Currently Waiting Calls for a Queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/waiting/:teamId/queue/:waitingQueueId",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "waitingQueueId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Currently Waiting Calls for a Queue"
+        },
+        {
+          "info": {
+            "name": "Get a Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/waiting/:teamId/calls/:callId",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "callId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a Call"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the Collections for a Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/collections/:teamId",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the Collections for a Team"
+        },
+        {
+          "info": {
+            "name": "List the Submissions for a Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/collections/:teamId/collection/:collectionId",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "ISO 8601 format: 1970-01-01T01:00:00Z"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "ISO 8601 format: 1970-01-01T01:00:00Z"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List the Submissions for a Collection"
+        },
+        {
+          "info": {
+            "name": "Get a Submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/collections/:teamId/collection/:collectionId/submission/:submissionId",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a Submission"
+        },
+        {
+          "info": {
+            "name": "Get the binary file for a SubmissionFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/collections/:teamId/collection/:collectionId/submission/:submissionId/file/:fileId",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "quality",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the binary file for a SubmissionFile"
+        },
+        {
+          "info": {
+            "name": "Get the binary file for an Audio Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.coviu.com/v1/collections/:teamId/collection/:collectionId/recording/:submissionId",
+            "params": [
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the binary file for an Audio Recording"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhook Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.coviu.com/webhook",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The events and payloads documented in this section are webhooks — they are not endpoints your system should call, but rather requests that will be sent from our servers to your system when relevant events occur. These webhook payloads are delivered as HTTP POST requests to a URL you configure during integration.\n\n\nThis page documents all events the webhooks can be configured to fire, and the structure of the payloads your system should expect to receive. Your system must expose an endpoint to re"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -2,10 +2,9 @@ generated: '2026-07-24'
 method: derived
 status: candidate
 source: openapi/coviu-rest-api-openapi.json
-notes: >-
-  No official hosted Coviu MCP server was found. This is a candidate tool surface derived one-to-one
-  from the Coviu REST OpenAPI operations, so an MCP server can be stood up with real inputSchemas
-  inherited from each backing operation (see mcp/coviu-tool-crosswalk.yml).
+notes: No official hosted Coviu MCP server was found. This is a candidate tool surface derived one-to-one
+  from the Coviu REST OpenAPI operations, so an MCP server can be stood up with real inputSchemas inherited
+  from each backing operation (see mcp/coviu-tool-crosswalk.yml).
 server:
   name: coviu
   transport: http
@@ -67,3 +66,9 @@ tools:
 - name: get_audio_recording
   description: Retrieve the binary audio recording for a submission.
   source_operation: openapi/coviu-rest-api-openapi.json#getAudioRecording
+deployment:
+  mode: none
+  verified: derived
+  tools: 19
+  checked: '2026-08-12'
+  source: catalog MCP census
