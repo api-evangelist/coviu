@@ -112,6 +112,10 @@ apis:
   baseURL: https://api.coviu.com/v1
   tags:
   - Telehealth
+  - Collection
+  - Recordings
+  tags_raw:
+  - Telehealth
   - Collections
   - Recordings
   properties:
@@ -132,6 +136,10 @@ apis:
   humanURL: https://coviu.readme.io/reference/webhooks-documentation
   baseURL: https://api.coviu.com/v1
   tags:
+  - Telehealth
+  - Webhook
+  - Event
+  tags_raw:
   - Telehealth
   - Webhooks
   - Events
