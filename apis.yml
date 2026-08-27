@@ -42,122 +42,12 @@ created: '2026-07-24'
 modified: '2026-07-24'
 specificationVersion: '0.23'
 apis:
-- aid: coviu:coviu-sessions-api
-  name: Coviu Sessions API
-  description: >-
-    Create, list, retrieve, update, and cancel Coviu video consultation Sessions, and
-    pull a Session Summary with participant entry/exit timing. OAuth2-authenticated REST
-    over https://api.coviu.com/v1.
-  humanURL: https://coviu.readme.io/reference/sessions
-  baseURL: https://api.coviu.com/v1
-  tags:
-  - Telehealth
-  - Sessions
-  - Video
-  properties:
-  - type: OpenAPI
-    url: openapi/coviu-rest-api-openapi.json
-  - type: Documentation
-    url: https://coviu.readme.io/reference/sessions
-  - type: APIReference
-    url: https://coviu.readme.io/reference/createsession
-  - type: Authentication
-    url: https://coviu.readme.io/reference/access-token
-- aid: coviu:coviu-participants-api
-  name: Coviu Participants API
-  description: >-
-    List, add, retrieve, update, and cancel Participants on a Coviu Session, controlling
-    the per-participant join links, names, avatars, and host/guest roles.
-  humanURL: https://coviu.readme.io/reference/listparticipants
-  baseURL: https://api.coviu.com/v1
-  tags:
-  - Telehealth
-  - Participants
-  properties:
-  - type: OpenAPI
-    url: openapi/coviu-rest-api-openapi.json
-  - type: Documentation
-    url: https://coviu.readme.io/reference/listparticipants
-  - type: APIReference
-    url: https://coviu.readme.io/reference/addparticipant
-  - type: Authentication
-    url: https://coviu.readme.io/reference/access-token
-- aid: coviu:coviu-waiting-area-api
-  name: Coviu Waiting Area API
-  description: >-
-    Read the Waiting Area in real time — currently waiting calls for a team, waiting calls
-    for a specific queue, and individual call detail — for virtual reception and triage
-    workflows.
-  humanURL: https://coviu.readme.io/reference/getcurrentlywaitingcalls
-  baseURL: https://api.coviu.com/v1
-  tags:
-  - Telehealth
-  - Waiting Area
-  properties:
-  - type: OpenAPI
-    url: openapi/coviu-rest-api-openapi.json
-  - type: Documentation
-    url: https://coviu.readme.io/reference/getcurrentlywaitingcalls
-  - type: APIReference
-    url: https://coviu.readme.io/reference/getcall
-  - type: Authentication
-    url: https://coviu.readme.io/reference/access-token
-- aid: coviu:coviu-collections-api
-  name: Coviu Collections API
-  description: >-
-    Retrieve a team's Collections and their Submissions, including submission files and
-    audio recordings captured during consultations, for downstream clinical record-keeping
-    and reporting.
-  humanURL: https://coviu.readme.io/reference/collections
-  baseURL: https://api.coviu.com/v1
-  tags:
-  - Telehealth
-  - Collection
-  - Recordings
-  tags_raw:
-  - Telehealth
-  - Collections
-  - Recordings
-  properties:
-  - type: OpenAPI
-    url: openapi/coviu-rest-api-openapi.json
-  - type: Documentation
-    url: https://coviu.readme.io/reference/collections
-  - type: APIReference
-    url: https://coviu.readme.io/reference/getcollections
-  - type: Authentication
-    url: https://coviu.readme.io/reference/access-token
-- aid: coviu:coviu-webhooks
-  name: Coviu Webhooks
-  description: >-
-    Real-time event notifications delivered as HTTP POST callbacks to a URL you configure,
-    firing when relevant Coviu events occur (for example a patient arriving in the waiting
-    room or a call concluding). Supports OAuth/custom-header authentication of your endpoint.
-  humanURL: https://coviu.readme.io/reference/webhooks-documentation
-  baseURL: https://api.coviu.com/v1
-  tags:
-  - Telehealth
-  - Webhook
-  - Event
-  tags_raw:
-  - Telehealth
-  - Webhooks
-  - Events
-  properties:
-  - type: OpenAPI
-    url: openapi/coviu-rest-api-openapi.json
-  - type: Documentation
-    url: https://coviu.readme.io/reference/webhooks-documentation
-  - type: APIReference
-    url: https://coviu.readme.io/reference/post_webhook
-  - type: Authentication
-    url: https://coviu.readme.io/reference/webhook-authentication
 - aid: coviu:coviu-plugin-api
   name: Coviu Plugin API
   description: >-
-    In-call Plugin (Apps) API for building custom experiences inside the Coviu video room —
-    adding UI elements, connecting to third-party systems, and enriching the clinical
-    encounter. Documented as a client-side extension surface rather than a REST endpoint set.
+    In-call Plugin (Apps) API for building custom experiences inside the Coviu video room — adding UI
+    elements, connecting to third-party systems, and enriching the clinical encounter. Documented as a
+    client-side extension surface rather than a REST endpoint set.
   humanURL: https://coviu.readme.io/reference/getting-started-with-your-api-1
   tags:
   - Telehealth
@@ -170,6 +60,210 @@ apis:
     url: https://coviu.readme.io/reference/technical-documentation-1
   - type: APIReference
     url: https://coviu.readme.io/reference/api-object-1
+- aid: coviu:coviu-auth-api
+  name: Coviu Auth API
+  description: The Auth API from Coviu — 1 operation(s) for auth.
+  humanURL: https://coviu.readme.io/reference/sessions
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-auth-api-openapi.yml
+  - type: Documentation
+    url: https://coviu.readme.io/reference/sessions
+  - type: APIReference
+    url: https://coviu.readme.io/reference/createsession
+  - type: Authentication
+    url: https://coviu.readme.io/reference/access-token
+  - type: Documentation
+    url: https://coviu.readme.io/reference/listparticipants
+  - type: APIReference
+    url: https://coviu.readme.io/reference/addparticipant
+  - type: Documentation
+    url: https://coviu.readme.io/reference/getcurrentlywaitingcalls
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcall
+  - type: Documentation
+    url: https://coviu.readme.io/reference/collections
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcollections
+  - type: Documentation
+    url: https://coviu.readme.io/reference/webhooks-documentation
+  - type: APIReference
+    url: https://coviu.readme.io/reference/post_webhook
+  - type: Authentication
+    url: https://coviu.readme.io/reference/webhook-authentication
+- aid: coviu:coviu-collections-api
+  name: Coviu Collections API
+  description: The Collections API from Coviu — 5 operation(s) for collections.
+  humanURL: https://coviu.readme.io/reference/sessions
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-collections-api-openapi.yml
+  - type: Documentation
+    url: https://coviu.readme.io/reference/sessions
+  - type: APIReference
+    url: https://coviu.readme.io/reference/createsession
+  - type: Authentication
+    url: https://coviu.readme.io/reference/access-token
+  - type: Documentation
+    url: https://coviu.readme.io/reference/listparticipants
+  - type: APIReference
+    url: https://coviu.readme.io/reference/addparticipant
+  - type: Documentation
+    url: https://coviu.readme.io/reference/getcurrentlywaitingcalls
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcall
+  - type: Documentation
+    url: https://coviu.readme.io/reference/collections
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcollections
+  - type: Documentation
+    url: https://coviu.readme.io/reference/webhooks-documentation
+  - type: APIReference
+    url: https://coviu.readme.io/reference/post_webhook
+  - type: Authentication
+    url: https://coviu.readme.io/reference/webhook-authentication
+- aid: coviu:coviu-participants-api
+  name: Coviu Participants API
+  description: The Participants API from Coviu — 2 operation(s) for participants.
+  humanURL: https://coviu.readme.io/reference/sessions
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Participants
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-participants-api-openapi.yml
+  - type: Documentation
+    url: https://coviu.readme.io/reference/sessions
+  - type: APIReference
+    url: https://coviu.readme.io/reference/createsession
+  - type: Authentication
+    url: https://coviu.readme.io/reference/access-token
+  - type: Documentation
+    url: https://coviu.readme.io/reference/listparticipants
+  - type: APIReference
+    url: https://coviu.readme.io/reference/addparticipant
+  - type: Documentation
+    url: https://coviu.readme.io/reference/getcurrentlywaitingcalls
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcall
+  - type: Documentation
+    url: https://coviu.readme.io/reference/collections
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcollections
+  - type: Documentation
+    url: https://coviu.readme.io/reference/webhooks-documentation
+  - type: APIReference
+    url: https://coviu.readme.io/reference/post_webhook
+  - type: Authentication
+    url: https://coviu.readme.io/reference/webhook-authentication
+- aid: coviu:coviu-sessions-api
+  name: Coviu Sessions API
+  description: The Sessions API from Coviu — 3 operation(s) for sessions.
+  humanURL: https://coviu.readme.io/reference/sessions
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://coviu.readme.io/reference/sessions
+  - type: APIReference
+    url: https://coviu.readme.io/reference/createsession
+  - type: Authentication
+    url: https://coviu.readme.io/reference/access-token
+  - type: Documentation
+    url: https://coviu.readme.io/reference/listparticipants
+  - type: APIReference
+    url: https://coviu.readme.io/reference/addparticipant
+  - type: Documentation
+    url: https://coviu.readme.io/reference/getcurrentlywaitingcalls
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcall
+  - type: Documentation
+    url: https://coviu.readme.io/reference/collections
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcollections
+  - type: Documentation
+    url: https://coviu.readme.io/reference/webhooks-documentation
+  - type: APIReference
+    url: https://coviu.readme.io/reference/post_webhook
+  - type: Authentication
+    url: https://coviu.readme.io/reference/webhook-authentication
+- aid: coviu:coviu-waiting-area-api
+  name: Coviu Waiting Area API
+  description: The Waiting Area API from Coviu — 3 operation(s) for waiting area.
+  humanURL: https://coviu.readme.io/reference/sessions
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Waiting Area
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-waiting-area-api-openapi.yml
+  - type: Documentation
+    url: https://coviu.readme.io/reference/sessions
+  - type: APIReference
+    url: https://coviu.readme.io/reference/createsession
+  - type: Authentication
+    url: https://coviu.readme.io/reference/access-token
+  - type: Documentation
+    url: https://coviu.readme.io/reference/listparticipants
+  - type: APIReference
+    url: https://coviu.readme.io/reference/addparticipant
+  - type: Documentation
+    url: https://coviu.readme.io/reference/getcurrentlywaitingcalls
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcall
+  - type: Documentation
+    url: https://coviu.readme.io/reference/collections
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcollections
+  - type: Documentation
+    url: https://coviu.readme.io/reference/webhooks-documentation
+  - type: APIReference
+    url: https://coviu.readme.io/reference/post_webhook
+  - type: Authentication
+    url: https://coviu.readme.io/reference/webhook-authentication
+- aid: coviu:coviu-webhook-requests-api
+  name: Coviu Webhook Requests API
+  description: The Webhook Requests API from Coviu — 1 operation(s) for webhook requests.
+  humanURL: https://coviu.readme.io/reference/sessions
+  baseURL: https://api.coviu.com/v1
+  tags:
+  - Webhook Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/coviu-webhook-requests-api-openapi.yml
+  - type: Documentation
+    url: https://coviu.readme.io/reference/sessions
+  - type: APIReference
+    url: https://coviu.readme.io/reference/createsession
+  - type: Authentication
+    url: https://coviu.readme.io/reference/access-token
+  - type: Documentation
+    url: https://coviu.readme.io/reference/listparticipants
+  - type: APIReference
+    url: https://coviu.readme.io/reference/addparticipant
+  - type: Documentation
+    url: https://coviu.readme.io/reference/getcurrentlywaitingcalls
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcall
+  - type: Documentation
+    url: https://coviu.readme.io/reference/collections
+  - type: APIReference
+    url: https://coviu.readme.io/reference/getcollections
+  - type: Documentation
+    url: https://coviu.readme.io/reference/webhooks-documentation
+  - type: APIReference
+    url: https://coviu.readme.io/reference/post_webhook
+  - type: Authentication
+    url: https://coviu.readme.io/reference/webhook-authentication
 common:
 - type: DomainSecurity
   url: security/coviu-domain-security.yml
