@@ -78,6 +78,8 @@ apis:
   humanURL: https://coviu.readme.io/reference/sessions
   baseURL: https://api.coviu.com/v1
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -112,6 +114,8 @@ apis:
   humanURL: https://coviu.readme.io/reference/sessions
   baseURL: https://api.coviu.com/v1
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
