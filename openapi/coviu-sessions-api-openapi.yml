@@ -1,0 +1,372 @@
+openapi: 3.2.0
+info:
+  title: Coviu REST Sessions API
+  version: '1.0'
+servers:
+- url: https://api.coviu.com
+tags:
+- name: Sessions
+paths:
+  /v1/sessions:
+    post:
+      tags:
+      - Sessions
+      summary: Create a Session
+      operationId: createSession
+      description: "There are some further options you are able to pass through a \"feature_flags\" field when creating a session. These allow some customisation of the interface\n\n## Custom features for Sessions\n\nCustom feature can be added while creating a Session and it can be done by passing values into the feature_flags array.\n\n**Example Feature Flags option** \n\n```text\nfeature_flags: [\n\n    '-plugin;coviu-waiting-room-plugin',\n\n    '-plugin;coviu-stripe-payments-resource-plugin',\n\n    'customisation;disable-menu',\n\n    'customisation;exit-url;https://your-exit-url',\n\n    'customisation;return-url;https://your-return-url',\n\n    'customisation;return-label;Your return label',\n\n    'customisation;auto-return',\n\n    'session;enforce-participant-uniqueness',\n\n    'customisation;favicon-url;https://yourdomain.com/favicon.ico'\n]\n```\n\n**What do they do?** \n\n| Feature Flag                                                   | What it does ?                                                                                                                                                               |\n| :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| \\-plugin                                                       | Removes standard Coviu plugins from the session room                                                                                                                         |\n| customisation;disable-menu                                     | Removes the menu from the session room                                                                                                                                       |\n| customisation;exit-url                                         | Add a specific URL to wherever you would like to redirect to if the user exits the call interface using the \"Exit call interface\" button prior to other participants joining |\n| customisation;return-url                                       | Add a specific URL to wherever you would like to redirect to after the call has completed from the exit screen                                                               |\n| customisation;return-label                                     | To label the button that does the return URL navigation.                                                                                                                     |\n| customisation;auto-return                                      | Automatically redirect to the return-url after hitting the \"end call\" button                                                                                                 |\n| session;enforce-participant-uniqueness                         | Allow for the unique use of the participant's URL - it can't be re-used after first entry                                                                                    |\n| customisation;favicon-url;<https://yourdomain.com/favicon.ico> | Allow for the use of your favicon in the call                                                                                                                                |\n| customisation;background-color;{value}                         | Allows for using a custom background colour in the Coviu call window                                                                                                         |\n| customisation;button-primary;{value}                           | Allows for using a custom button colour in the Coviu call window                                                                                                             |\n| customisation;button-secondary;{value}                         | Allows for using a custom colour for the content inside the button in the Coviu call window                                                                                  |\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSession'
+      responses:
+        '200':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '400':
+          description: '400'
+    get:
+      tags:
+      - Sessions
+      summary: List Sessions
+      operationId: listSessions
+      parameters:
+      - name: page
+        in: query
+        description: Zero based index
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: Number of entries to return
+        schema:
+          type: integer
+      - name: start_time
+        in: query
+        description: Include sessions whose start time falls after the given start time
+        schema:
+          type: string
+          format: date-time
+      - name: end_time
+        in: query
+        description: Include sessions whose end time falls before the given end time
+        schema:
+          type: string
+          format: date-time
+      - name: order
+        in: query
+        description: Orders the returned sessions
+        schema:
+          type: string
+          enum:
+          - forward
+          - reverse
+      - name: include_canceled
+        in: query
+        description: Include sessions that have been cancelled.
+        schema:
+          type: string
+      - name: deleted_participants
+        in: query
+        description: Include participants that have been removed from the session.
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: Limit the response to sessions with participants with specific state value.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of sessions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Session'
+                  page:
+                    type: integer
+                  page_size:
+                    type: integer
+                  more:
+                    type: boolean
+  /v1/sessions/{session_id}:
+    parameters:
+    - name: session_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - Sessions
+      summary: Get a Session
+      operationId: getSession
+      responses:
+        '200':
+          description: Session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+    put:
+      tags:
+      - Sessions
+      summary: Update a Session
+      operationId: updateSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSession'
+      responses:
+        '200':
+          description: Session updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '400':
+          description: '400'
+    delete:
+      tags:
+      - Sessions
+      summary: Cancel a Session
+      operationId: cancelSession
+      responses:
+        '200':
+          description: Cancelled
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+  /v1/sessions/{session_id}/summary:
+    parameters:
+    - name: session_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - Sessions
+      summary: Get Session Summary
+      operationId: getSessionSummary
+      description: 'Here is some further information on the timestamps provided in the response:
+
+
+        - Start time - Scheduled start time for the session
+
+        - End time - Scheduled end time for the session
+
+        - Actual start time - Creation time of the call, typically when host has joined
+
+        - Actual end time - Call recorded as complete, last participant has left
+
+        - Participant entry time - Earliest recorded entry time for the participant, does not include time in Waiting Room
+
+        - Participant exit time - Latest recorded exit time for the participant.
+
+        '
+      responses:
+        '200':
+          description: Session Summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionSummary'
+components:
+  schemas:
+    UpdateSession:
+      type: object
+      properties:
+        session_name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        picture:
+          type: string
+    Participant:
+      type: object
+      required:
+      - client_id
+      - display_name
+      - participant_id
+      - role
+      - session_id
+      - created
+      properties:
+        client_id:
+          type: string
+          format: uuid
+        display_name:
+          type: string
+          format: uuid
+        entry_url:
+          type: string
+          format: uuid
+        participant_id:
+          type: string
+          format: uuid
+        picture:
+          type: string
+          format: uuid
+        role:
+          $ref: '#/components/schemas/Role'
+        session_id:
+          type: string
+          format: uuid
+        state:
+          type: string
+        user_hint:
+          type: string
+        deleted_at:
+          type: string
+          format: date-time
+        coviu_user_id:
+          type: string
+          format: uuid
+        phone:
+          type: string
+    Role:
+      type: string
+      enum:
+      - GUEST
+      - HOST
+      - PARTICIPANT
+    Session:
+      type: object
+      required:
+      - session_id
+      - participants
+      properties:
+        session_id:
+          type: string
+          format: uuid
+        session_name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        picture:
+          type: string
+        team_id:
+          type: string
+          format: uuid
+        client_id:
+          type: string
+          format: uuid
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+    SessionSummary:
+      type: object
+      properties:
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipantSummary'
+    CreateSession:
+      type: object
+      required:
+      - session_name
+      - start_time
+      - end_time
+      properties:
+        session_name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        picture:
+          type: string
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+    ParticipantSummary:
+      type: object
+      properties:
+        participant_id:
+          type: string
+          format: uuid
+        role:
+          $ref: '#/components/schemas/Role'
+        entry_time:
+          type: string
+          format: date-time
+        exit_time:
+          type: object
+          properties:
+            left_at:
+              type: string
+              format: date-time
+            left_reason:
+              type: string
+        bandwidth:
+          type: object
+          properties:
+            min_sent_bandwidth:
+              type: number
+            max_sent_bandwidth:
+              type: number
+            avg_sent_bandwidth:
+              type: number
+            min_receive_bandwidth:
+              type: number
+            max_receive_bandwidth:
+              type: number
+            avg_receive_bandwidth:
+              type: number
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Used to request an access token. Supply the Client ID and Client Secret as the username and password.
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/auth/token
+          scopes: {}

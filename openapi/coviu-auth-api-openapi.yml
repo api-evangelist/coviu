@@ -1,0 +1,90 @@
+openapi: 3.2.0
+info:
+  title: Coviu REST Auth API
+  version: '1.0'
+servers:
+- url: https://api.coviu.com
+tags:
+- name: Auth
+paths:
+  /v1/auth/token:
+    post:
+      tags:
+      - Auth
+      summary: Request access token
+      description: "Request an access token using one of the supported OAuth2 grant types:\n## Client Credentials \n\n  - HTTP Basic Auth, passing the Client ID and Client Secret as the username and password\n\n  - `application/x-www-form-urlencoded` data, containing:\n\n    - `{ grant_type: \"client_credentials\" }`\n\n\n## Authorization Code\n\n  - HTTP Basic Auth, passing the Client ID and Client Secret as the username and password\n\n  - `application/x-www-form-urlencoded` data, containing:\n\n    - ```\n      { \n        grant_type: \"authorization_code\", \n        code: \"eyJ0eXAi....\" \n      }\n      ```\n\n\n## Refresh Token\n\n  - HTTP Basic Auth, passing the Client ID and Client Secret as the username and password\n\n  - `application/x-www-form-urlencoded` data, containing:\n\n    - ```\n      { \n        grant_type: \"refresh_token\", \n        refresh_token: \"eyJ0eXAi....\" \n      }\n      ```\n"
+      operationId: access-token
+      security:
+      - Basic: []
+      requestBody:
+        content:
+          application/x-www-form-url-encoded:
+            schema:
+              oneOf:
+              - type: object
+                required:
+                - grant_type
+                properties:
+                  grant_type:
+                    type: string
+                    enum:
+                    - client_credentials
+              - type: object
+                required:
+                - grant_type
+                - code
+                properties:
+                  grant_type:
+                    type: string
+                    enum:
+                    - authorization_code
+                  code:
+                    type: string
+              - type: object
+                required:
+                - grant_type
+                - refresh_token
+                properties:
+                  grant_type:
+                    type: string
+                    enum:
+                    - refresh_token
+                  refresh_token:
+                    type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '400':
+          description: '400'
+components:
+  schemas:
+    Token:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        expires_in:
+          type: integer
+        token_type:
+          type: string
+          enum:
+          - Bearer
+        scope:
+          type: string
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Used to request an access token. Supply the Client ID and Client Secret as the username and password.
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/auth/token
+          scopes: {}

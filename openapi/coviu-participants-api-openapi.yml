@@ -1,0 +1,205 @@
+openapi: 3.2.0
+info:
+  title: Coviu REST Participants API
+  version: '1.0'
+servers:
+- url: https://api.coviu.com
+tags:
+- name: Participants
+paths:
+  /v1/sessions/{session_id}/participants:
+    parameters:
+    - name: session_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: deleted_participants
+      in: query
+      description: Include participants that have been removed from the session.
+      schema:
+        type: string
+    get:
+      tags:
+      - Participants
+      summary: List Participants
+      operationId: listParticipants
+      description: 'By default, the returned order is paginated with the first page containing the created sessions in chronological order (oldest created first). If you set the "order" parameter to "reverse", the newest created sessions will be returned.
+
+
+        You can filter sessions by start and end time, at which stage the returned result list is ordered by start time in chronological order (rather than by creation time). The "order" parameter allows you to reverse this order to retrieve sessions by start time with the newest start time first.
+
+        '
+      responses:
+        '200':
+          description: List of participants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Participant'
+    post:
+      tags:
+      - Participants
+      summary: Add Participant
+      operationId: addParticipant
+      description: 'It is sometimes useful to add a participant to a session after the session has been created. It is possible to add a participant to a session that has already started, but not to a session that has already finished.
+
+        '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateParticipant'
+      responses:
+        '200':
+          description: Participant added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant'
+        '400':
+          description: '400'
+  /v1/participants/{participant_id}:
+    parameters:
+    - name: participant_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Participants
+      summary: Get Participant
+      operationId: getParticipant
+      responses:
+        '200':
+          description: Participant details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant'
+    put:
+      tags:
+      - Participants
+      summary: Update Participant
+      operationId: updateParticipant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateParticipant'
+      responses:
+        '200':
+          description: Participant updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant'
+        '400':
+          description: '400'
+    delete:
+      tags:
+      - Participants
+      summary: Cancel a Participant
+      operationId: cancelParticipant
+      description: 'A session that is scheduled for the future may be canceled. No participants will be able to join the session after it has been canceled, and it can not be uncanceled once it has been canceled. A session that has already started may not be canceled.
+
+        '
+      responses:
+        '200':
+          description: Participant cancelled
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+components:
+  schemas:
+    UpdateParticipant:
+      type: object
+      properties:
+        display_name:
+          type: string
+        picture:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        state:
+          type: string
+    Participant:
+      type: object
+      required:
+      - client_id
+      - display_name
+      - participant_id
+      - role
+      - session_id
+      - created
+      properties:
+        client_id:
+          type: string
+          format: uuid
+        display_name:
+          type: string
+          format: uuid
+        entry_url:
+          type: string
+          format: uuid
+        participant_id:
+          type: string
+          format: uuid
+        picture:
+          type: string
+          format: uuid
+        role:
+          $ref: '#/components/schemas/Role'
+        session_id:
+          type: string
+          format: uuid
+        state:
+          type: string
+        user_hint:
+          type: string
+        deleted_at:
+          type: string
+          format: date-time
+        coviu_user_id:
+          type: string
+          format: uuid
+        phone:
+          type: string
+    CreateParticipant:
+      type: object
+      properties:
+        display_name:
+          type: string
+        picture:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        state:
+          type: string
+        phone:
+          type: string
+    Role:
+      type: string
+      enum:
+      - GUEST
+      - HOST
+      - PARTICIPANT
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Used to request an access token. Supply the Client ID and Client Secret as the username and password.
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/auth/token
+          scopes: {}

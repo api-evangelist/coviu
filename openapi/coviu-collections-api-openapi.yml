@@ -1,0 +1,343 @@
+openapi: 3.2.0
+info:
+  title: Coviu REST Collections API
+  version: '1.0'
+servers:
+- url: https://api.coviu.com
+tags:
+- name: Collections
+paths:
+  /v1/collections/{teamId}:
+    get:
+      tags:
+      - Collections
+      summary: Retrieve the Collections for a Team
+      operationId: getCollections
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Collection
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collection'
+  /v1/collections/{teamId}/collection/{collectionId}:
+    get:
+      tags:
+      - Collections
+      summary: List the Submissions for a Collection
+      operationId: listSubmissions
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collectionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: 'ISO 8601 format: 1970-01-01T01:00:00Z'
+      - name: until
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: 'ISO 8601 format: 1970-01-01T01:00:00Z'
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 20
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+      - name: orderBy
+        in: query
+        required: false
+        schema:
+          type: string
+          default: created_at
+      responses:
+        '200':
+          description: Collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Submission'
+                  total:
+                    type: number
+  /v1/collections/{teamId}/collection/{collectionId}/submission/{submissionId}:
+    get:
+      tags:
+      - Collections
+      summary: Get a Submission
+      operationId: getSubmission
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collectionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: submissionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Submission
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionDetail'
+  /v1/collections/{teamId}/collection/{collectionId}/submission/{submissionId}/file/{fileId}:
+    get:
+      tags:
+      - Collections
+      summary: Get the binary file for a SubmissionFile
+      operationId: getSubmissionFile
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collectionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: submissionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: fileId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: quality
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - 480p
+      responses:
+        '200':
+          description: Video Recording
+          content:
+            video/webm:
+              schema:
+                type: string
+                format: binary
+        '206':
+          description: Video Recording
+          content:
+            video/webm:
+              schema:
+                type: string
+                format: binary
+  /v1/collections/{teamId}/collection/{collectionId}/recording/{submissionId}:
+    get:
+      tags:
+      - Collections
+      summary: Get the binary file for an Audio Recording
+      operationId: getAudioRecording
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collectionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: submissionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Audio Recording
+          content:
+            audio/webm:
+              schema:
+                type: string
+                format: binary
+        '206':
+          description: Audio Recording
+          content:
+            audio/webm:
+              schema:
+                type: string
+                format: binary
+components:
+  schemas:
+    SubmissionDetail:
+      allOf:
+      - type: object
+        properties:
+          files:
+            type: array
+            items:
+              $ref: '#/components/schemas/SubmissionFile'
+      - $ref: '#/components/schemas/Submission'
+    Submission:
+      type: object
+      properties:
+        secure_collection_id:
+          type: string
+          format: uuid
+        item_submission_id:
+          type: string
+          format: uuid
+        session_id:
+          type: string
+          format: uuid
+        collection_location:
+          type: string
+        submitting_user_id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        locked_at:
+          type: string
+          format: date-time
+        action_status:
+          type: boolean
+    Collection:
+      type: object
+      required:
+      - id
+      - team_id
+      - collection_id
+      - collection_reference
+      - name
+      - read_setting
+      - delete_setting
+      - created_at
+      properties:
+        id:
+          type: string
+          format: uuid
+        team_id:
+          type: string
+          format: uuid
+        collection_id:
+          type: string
+          format: uuid
+        collection_reference:
+          type: string
+        name:
+          type: string
+        read_setting:
+          type: string
+          enum:
+          - restricted
+          - exclusive
+          - team
+        delete_setting:
+          type: string
+          enum:
+          - restricted
+          - exclusive
+          - team
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    SubmissionFile:
+      type: object
+      properties:
+        id:
+          type: string
+        metadata:
+          type: object
+        size:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Used to request an access token. Supply the Client ID and Client Secret as the username and password.
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/auth/token
+          scopes: {}

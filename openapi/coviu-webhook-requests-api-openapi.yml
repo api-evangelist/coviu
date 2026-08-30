@@ -1,0 +1,459 @@
+openapi: 3.2.0
+info:
+  title: Coviu REST Webhook Requests API
+  version: '1.0'
+servers:
+- url: https://api.coviu.com
+tags:
+- name: Webhook Requests
+paths:
+  /webhook:
+    post:
+      tags:
+      - Webhook Requests
+      description: 'The events and payloads documented in this section are webhooks — they are not endpoints your system should call, but rather requests that will be sent from our servers to your system when relevant events occur. These webhook payloads are delivered as HTTP POST requests to a URL you configure during integration.
+
+
+
+        This page documents all events the webhooks can be configured to fire, and the structure of the payloads your system should expect to receive. Your system must expose an endpoint to receive these POST requests, and handle the incoming JSON payload according to the schema.
+
+
+
+        Note: You should respond with a 2xx HTTP status code to acknowledge receipt. The system will not retry requests upon failure.
+
+        '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/WaitingAreaJoin'
+              - $ref: '#/components/schemas/WaitingAreaAnswer'
+              - $ref: '#/components/schemas/WaitingAreaLeave'
+              - $ref: '#/components/schemas/WaitingAreaEndCall'
+              - $ref: '#/components/schemas/CallUpdated'
+              - $ref: '#/components/schemas/CallEnd'
+              - $ref: '#/components/schemas/CallTransfer'
+              - $ref: '#/components/schemas/ParticipantJoin'
+              - $ref: '#/components/schemas/ParticipantLeave'
+              - $ref: '#/components/schemas/ParticipantOnHold'
+              - $ref: '#/components/schemas/DataCollectionItemSaved'
+              - $ref: '#/components/schemas/SessionCreate'
+              - $ref: '#/components/schemas/SessionUpdate'
+              - $ref: '#/components/schemas/SessionCancel'
+            examples:
+              waitingarea:join:
+                summary: waitingarea:join
+                value:
+                  type: waitingarea:join
+                  createdAt: 1722508800
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    callId: 22222222-2222-2222-2222-222222222222
+                    waitingQueueId: 33333333-3333-3333-3333-333333333333
+              waitingarea:answer:
+                summary: waitingarea:answer
+                value:
+                  type: waitingarea:answer
+                  createdAt: 1722508801
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    callId: 22222222-2222-2222-2222-222222222222
+                    waitingQueueId: 33333333-3333-3333-3333-333333333333
+              waitingarea:leave:
+                summary: waitingarea:leave
+                value:
+                  type: waitingarea:leave
+                  createdAt: 1722508802
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    callId: 22222222-2222-2222-2222-222222222222
+                    waitingQueueId: 33333333-3333-3333-3333-333333333333
+              waitingarea:end-call:
+                summary: waitingarea:end-call
+                value:
+                  type: waitingarea:end-call
+                  createdAt: 1722508803
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    callId: 22222222-2222-2222-2222-222222222222
+                    waitingQueueId: 33333333-3333-3333-3333-333333333333
+              call:updated:
+                summary: call:updated
+                value:
+                  type: call:updated
+                  createdAt: 1722508804
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    callId: 22222222-2222-2222-2222-222222222222
+                    waitingQueueId: 33333333-3333-3333-3333-333333333333
+              call:end:
+                summary: call:end
+                value:
+                  type: call:end
+                  createdAt: 1722508805
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    callId: 22222222-2222-2222-2222-222222222222
+                    waitingQueueId: 33333333-3333-3333-3333-333333333333
+              call:transfer:
+                summary: call:transfer
+                value:
+                  type: call:transfer
+                  createdAt: 1722508806
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    callId: 22222222-2222-2222-2222-222222222222
+                    waitingQueueId: 33333333-3333-3333-3333-333333333333
+                    destinationTeamId: 44444444-4444-4444-4444-444444444444
+                    destinationWaitingQueueId: 55555555-5555-5555-5555-555555555555
+              participant:join:
+                summary: participant:join
+                value:
+                  type: participant:join
+                  createdAt: 1722508807
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    sessionId: aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                    waitingQueueId: 33333333-3333-3333-3333-333333333333
+                    participantId: bbbbbbb1-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+              participant:leave:
+                summary: participant:leave
+                value:
+                  type: participant:leave
+                  createdAt: 1722508808
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    sessionId: aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                    waitingQueueId: 33333333-3333-3333-3333-333333333333
+                    participantId: bbbbbbb1-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+              participant:on-hold:
+                summary: participant:on-hold
+                value:
+                  type: participant:on-hold
+                  createdAt: 1722508809
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    sessionId: aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                    waitingQueueId: 33333333-3333-3333-3333-333333333333
+                    participantId: bbbbbbb1-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+              datacollectionitem:saved:
+                summary: datacollectionitem:saved
+                value:
+                  type: datacollectionitem:saved
+                  createdAt: 1722508810
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    collectionId: 66666666-6666-6666-6666-666666666666
+                    submissionId: 77777777-7777-7777-7777-777777777777
+                    dataType: form
+              session:create:
+                summary: session:create
+                value:
+                  type: session:create
+                  createdAt: 1722508809
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    sessionId: aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+              session:update:
+                summary: session:update
+                value:
+                  type: session:update
+                  createdAt: 1722508809
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    sessionId: aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+              session:cancel:
+                summary: session:cancel
+                value:
+                  type: session:cancel
+                  createdAt: 1722508809
+                  payload:
+                    teamId: 11111111-1111-1111-1111-111111111111
+                    sessionId: aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+      responses:
+        '200':
+          description: ''
+components:
+  schemas:
+    CallTransfer:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - call:transfer
+          payload:
+            type: object
+            required:
+            - teamId
+            - callId
+            - destinationTeamId
+            properties:
+              destinationTeamId:
+                type: string
+                format: uuid
+              destinationWaitingQueueId:
+                type: string
+                format: uuid
+      - $ref: '#/components/schemas/CallFields'
+    ParticipantFields:
+      type: object
+      required:
+      - payload
+      - createdAt
+      properties:
+        createdAt:
+          type: number
+        payload:
+          type: object
+          required:
+          - teamId
+          - participantId
+          properties:
+            teamId:
+              type: string
+              format: uuid
+            sessionId:
+              type: string
+              format: uuid
+            waitingQueueId:
+              type: string
+              format: uuid
+            participantId:
+              type: string
+              format: uuid
+    ParticipantJoin:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - participant:join
+      - $ref: '#/components/schemas/ParticipantFields'
+    WaitingAreaAnswer:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - waitingarea:answer
+      - $ref: '#/components/schemas/CallFields'
+    WaitingAreaJoin:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - waitingarea:join
+      - $ref: '#/components/schemas/CallFields'
+    DataCollectionFields:
+      type: object
+      required:
+      - payload
+      - createdAt
+      properties:
+        createdAt:
+          type: number
+        payload:
+          type: object
+          required:
+          - teamId
+          - collectionId
+          - submissionId
+          - dataType
+          properties:
+            teamId:
+              type: string
+              format: uuid
+            collectionId:
+              type: string
+              format: uuid
+            submissionId:
+              type: string
+              format: uuid
+            dataType:
+              type: string
+              enum:
+              - video-recording
+              - recording
+              - kv
+              - form
+              - media
+              - voicemail
+              - combination
+    SessionCancel:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - session:delete
+      - $ref: '#/components/schemas/SessionFields'
+    SessionCreate:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - session:create
+      - $ref: '#/components/schemas/SessionFields'
+    SessionFields:
+      type: object
+      required:
+      - payload
+      - createdAt
+      properties:
+        createdAt:
+          type: number
+        payload:
+          type: object
+          required:
+          - teamId
+          - sessionId
+          properties:
+            teamId:
+              type: string
+              format: uuid
+            sessionId:
+              type: string
+              format: uuid
+    SessionUpdate:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - session:update
+      - $ref: '#/components/schemas/SessionFields'
+    CallFields:
+      type: object
+      required:
+      - payload
+      - createdAt
+      properties:
+        createdAt:
+          type: number
+        payload:
+          type: object
+          properties:
+            teamId:
+              type: string
+              format: uuid
+            callId:
+              type: string
+              format: uuid
+            waitingQueueId:
+              type: string
+              format: uuid
+    WaitingAreaLeave:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - waitingarea:leave
+      - $ref: '#/components/schemas/CallFields'
+    CallUpdated:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - call:updated
+      - $ref: '#/components/schemas/CallFields'
+    WaitingAreaEndCall:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - waitingarea:end-call
+      - $ref: '#/components/schemas/CallFields'
+    ParticipantOnHold:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - participant:on-hold
+      - $ref: '#/components/schemas/ParticipantFields'
+    DataCollectionItemSaved:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - datacollectionitem:saved
+            x-enumDescriptions:
+              datacollectionitem:saved: Data Collection Item Saved
+      - $ref: '#/components/schemas/DataCollectionFields'
+    ParticipantLeave:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - participant:leave
+      - $ref: '#/components/schemas/ParticipantFields'
+    CallEnd:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - call:end
+      - $ref: '#/components/schemas/CallFields'
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Used to request an access token. Supply the Client ID and Client Secret as the username and password.
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/auth/token
+          scopes: {}

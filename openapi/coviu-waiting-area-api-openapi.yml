@@ -1,0 +1,170 @@
+openapi: 3.2.0
+info:
+  title: Coviu REST Waiting Area API
+  version: '1.0'
+servers:
+- url: https://api.coviu.com
+tags:
+- name: Waiting Area
+paths:
+  /v1/waiting/{teamId}:
+    get:
+      tags:
+      - Waiting Area
+      summary: Get Currently Waiting Calls
+      operationId: getCurrentlyWaitingCalls
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of waiting calls
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Call'
+  /v1/waiting/{teamId}/queue/{waitingQueueId}:
+    get:
+      tags:
+      - Waiting Area
+      summary: Get Currently Waiting Calls for a Queue
+      operationId: getCurrentlyWaitingCallsForQueue
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: waitingQueueId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: List of waiting calls
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Call'
+  /v1/waiting/{teamId}/calls/{callId}:
+    get:
+      tags:
+      - Waiting Area
+      summary: Get a Call
+      operationId: getCall
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: callId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Call
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Call'
+components:
+  schemas:
+    Call:
+      type: object
+      required:
+      - callId
+      - teamId
+      - peerId
+      - joinedAt
+      - lastActivityAt
+      - callType
+      properties:
+        callId:
+          type: string
+          format: uuid
+        teamId:
+          type: string
+          format: uuid
+        peerId:
+          type: string
+        socketId:
+          type: string
+          format: uuid
+        sessionId:
+          type: string
+          format: uuid
+        details:
+          type: string
+          x-format: json-string
+        joinedAt:
+          type: string
+          format: date-time
+        leftQueueAt:
+          type: string
+          format: date-time
+        answeredAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        lastActivityAt:
+          type: string
+          format: date-time
+        cleanedAt:
+          type: string
+          format: date-time
+        transferredAt:
+          type: string
+          format: date-time
+        transferredTo:
+          type: string
+        previousCallId:
+          type: string
+          format: uuid
+        onHoldAt:
+          type: string
+          format: date-time
+        transferredToTeam:
+          type: string
+          format: uuid
+        emptiedAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+        callType:
+          type: string
+          enum:
+          - video
+          - phone
+        waitingQueueId:
+          type: string
+          format: uuid
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+      description: Used to request an access token. Supply the Client ID and Client Secret as the username and password.
+    ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/auth/token
+          scopes: {}
