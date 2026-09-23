@@ -13,7 +13,82 @@ paths:
       - Sessions
       summary: Create a Session
       operationId: createSession
-      description: "There are some further options you are able to pass through a \"feature_flags\" field when creating a session. These allow some customisation of the interface\n\n## Custom features for Sessions\n\nCustom feature can be added while creating a Session and it can be done by passing values into the feature_flags array.\n\n**Example Feature Flags option** \n\n```text\nfeature_flags: [\n\n    '-plugin;coviu-waiting-room-plugin',\n\n    '-plugin;coviu-stripe-payments-resource-plugin',\n\n    'customisation;disable-menu',\n\n    'customisation;exit-url;https://your-exit-url',\n\n    'customisation;return-url;https://your-return-url',\n\n    'customisation;return-label;Your return label',\n\n    'customisation;auto-return',\n\n    'session;enforce-participant-uniqueness',\n\n    'customisation;favicon-url;https://yourdomain.com/favicon.ico'\n]\n```\n\n**What do they do?** \n\n| Feature Flag                                                   | What it does ?                                                                                                                                                               |\n| :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| \\-plugin                                                       | Removes standard Coviu plugins from the session room                                                                                                                         |\n| customisation;disable-menu                                     | Removes the menu from the session room                                                                                                                                       |\n| customisation;exit-url                                         | Add a specific URL to wherever you would like to redirect to if the user exits the call interface using the \"Exit call interface\" button prior to other participants joining |\n| customisation;return-url                                       | Add a specific URL to wherever you would like to redirect to after the call has completed from the exit screen                                                               |\n| customisation;return-label                                     | To label the button that does the return URL navigation.                                                                                                                     |\n| customisation;auto-return                                      | Automatically redirect to the return-url after hitting the \"end call\" button                                                                                                 |\n| session;enforce-participant-uniqueness                         | Allow for the unique use of the participant's URL - it can't be re-used after first entry                                                                                    |\n| customisation;favicon-url;<https://yourdomain.com/favicon.ico> | Allow for the use of your favicon in the call                                                                                                                                |\n| customisation;background-color;{value}                         | Allows for using a custom background colour in the Coviu call window                                                                                                         |\n| customisation;button-primary;{value}                           | Allows for using a custom button colour in the Coviu call window                                                                                                             |\n| customisation;button-secondary;{value}                         | Allows for using a custom colour for the content inside the button in the Coviu call window                                                                                  |\n"
+      description: 'There are some further options you are able to pass through a "feature_flags" field when creating a session. These allow some customisation of the interface
+
+
+        ## Custom features for Sessions
+
+
+        Custom feature can be added while creating a Session and it can be done by passing values into the feature_flags array.
+
+
+        **Example Feature Flags option**
+
+
+        ```text
+
+        feature_flags: [
+
+
+        ''-plugin;coviu-waiting-room-plugin'',
+
+
+        ''-plugin;coviu-stripe-payments-resource-plugin'',
+
+
+        ''customisation;disable-menu'',
+
+
+        ''customisation;exit-url;https://your-exit-url'',
+
+
+        ''customisation;return-url;https://your-return-url'',
+
+
+        ''customisation;return-label;Your return label'',
+
+
+        ''customisation;auto-return'',
+
+
+        ''session;enforce-participant-uniqueness'',
+
+
+        ''customisation;favicon-url;https://yourdomain.com/favicon.ico''
+
+        ]
+
+        ```
+
+
+        **What do they do?**
+
+
+        | Feature Flag | What it does ? |
+
+        | :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+        | \-plugin | Removes standard Coviu plugins from the session room |
+
+        | customisation;disable-menu | Removes the menu from the session room |
+
+        | customisation;exit-url | Add a specific URL to wherever you would like to redirect to if the user exits the call interface using the "Exit call interface" button prior to other participants joining |
+
+        | customisation;return-url | Add a specific URL to wherever you would like to redirect to after the call has completed from the exit screen |
+
+        | customisation;return-label | To label the button that does the return URL navigation. |
+
+        | customisation;auto-return | Automatically redirect to the return-url after hitting the "end call" button |
+
+        | session;enforce-participant-uniqueness | Allow for the unique use of the participant''s URL - it can''t be re-used after first entry |
+
+        | customisation;favicon-url; | Allow for the use of your favicon in the call |
+
+        | customisation;background-color;{value} | Allows for using a custom background colour in the Coviu call window |
+
+        | customisation;button-primary;{value} | Allows for using a custom button colour in the Coviu call window |
+
+        | customisation;button-secondary;{value} | Allows for using a custom colour for the content inside the button in the Coviu call window |'
       requestBody:
         content:
           application/json:
@@ -177,9 +252,7 @@ paths:
 
         - Participant entry time - Earliest recorded entry time for the participant, does not include time in Waiting Room
 
-        - Participant exit time - Latest recorded exit time for the participant.
-
-        '
+        - Participant exit time - Latest recorded exit time for the participant.'
       responses:
         '200':
           description: Session Summary
@@ -189,6 +262,52 @@ paths:
                 $ref: '#/components/schemas/SessionSummary'
 components:
   schemas:
+    Role:
+      type: string
+      enum:
+      - GUEST
+      - HOST
+      - PARTICIPANT
+    CreateSession:
+      type: object
+      required:
+      - session_name
+      - start_time
+      - end_time
+      properties:
+        session_name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        picture:
+          type: string
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+    SessionSummary:
+      type: object
+      properties:
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipantSummary'
     UpdateSession:
       type: object
       properties:
@@ -247,84 +366,6 @@ components:
           format: uuid
         phone:
           type: string
-    Role:
-      type: string
-      enum:
-      - GUEST
-      - HOST
-      - PARTICIPANT
-    Session:
-      type: object
-      required:
-      - session_id
-      - participants
-      properties:
-        session_id:
-          type: string
-          format: uuid
-        session_name:
-          type: string
-        start_time:
-          type: string
-          format: date-time
-        end_time:
-          type: string
-          format: date-time
-        actual_end_time:
-          type: string
-          format: date-time
-        picture:
-          type: string
-        team_id:
-          type: string
-          format: uuid
-        client_id:
-          type: string
-          format: uuid
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
-    SessionSummary:
-      type: object
-      properties:
-        start_time:
-          type: string
-          format: date-time
-        end_time:
-          type: string
-          format: date-time
-        actual_end_time:
-          type: string
-          format: date-time
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/ParticipantSummary'
-    CreateSession:
-      type: object
-      required:
-      - session_name
-      - start_time
-      - end_time
-      properties:
-        session_name:
-          type: string
-        start_time:
-          type: string
-          format: date-time
-        end_time:
-          type: string
-          format: date-time
-        actual_end_time:
-          type: string
-          format: date-time
-        picture:
-          type: string
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
     ParticipantSummary:
       type: object
       properties:
@@ -359,6 +400,38 @@ components:
               type: number
             avg_receive_bandwidth:
               type: number
+    Session:
+      type: object
+      required:
+      - session_id
+      - participants
+      properties:
+        session_id:
+          type: string
+          format: uuid
+        session_name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        picture:
+          type: string
+        team_id:
+          type: string
+          format: uuid
+        client_id:
+          type: string
+          format: uuid
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
   securitySchemes:
     Basic:
       type: http

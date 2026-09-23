@@ -1,0 +1,36 @@
+{
+  "provider": "coviu",
+  "sources": [
+    "_original/coviu-rest-api-openapi.json"
+  ],
+  "outputs": [
+    "coviu-auth-api-openapi.yml",
+    "coviu-collections-api-openapi.yml",
+    "coviu-participants-api-openapi.yml",
+    "coviu-sessions-api-openapi.yml",
+    "coviu-waiting-area-api-openapi.yml",
+    "coviu-webhook-requests-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "coviu-rest-api-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "coviu-rest-api-openapi.json: declared missing tag: Auth",
+    "coviu-rest-api-openapi.json: declared missing tag: Collections",
+    "coviu-rest-api-openapi.json: declared missing tag: Participants",
+    "coviu-rest-api-openapi.json: declared missing tag: Sessions",
+    "coviu-rest-api-openapi.json: declared missing tag: Waiting Area",
+    "coviu-rest-api-openapi.json: declared missing tag: Webhook Requests",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "coviu-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coviu-collections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coviu-participants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coviu-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coviu-waiting-area-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coviu-webhook-requests-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

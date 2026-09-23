@@ -28,9 +28,7 @@ paths:
       description: 'By default, the returned order is paginated with the first page containing the created sessions in chronological order (oldest created first). If you set the "order" parameter to "reverse", the newest created sessions will be returned.
 
 
-        You can filter sessions by start and end time, at which stage the returned result list is ordered by start time in chronological order (rather than by creation time). The "order" parameter allows you to reverse this order to retrieve sessions by start time with the newest start time first.
-
-        '
+        You can filter sessions by start and end time, at which stage the returned result list is ordered by start time in chronological order (rather than by creation time). The "order" parameter allows you to reverse this order to retrieve sessions by start time with the newest start time first.'
       responses:
         '200':
           description: List of participants
@@ -45,9 +43,7 @@ paths:
       - Participants
       summary: Add Participant
       operationId: addParticipant
-      description: 'It is sometimes useful to add a participant to a session after the session has been created. It is possible to add a participant to a session that has already started, but not to a session that has already finished.
-
-        '
+      description: It is sometimes useful to add a participant to a session after the session has been created. It is possible to add a participant to a session that has already started, but not to a session that has already finished.
       requestBody:
         content:
           application/json:
@@ -105,9 +101,7 @@ paths:
       - Participants
       summary: Cancel a Participant
       operationId: cancelParticipant
-      description: 'A session that is scheduled for the future may be canceled. No participants will be able to join the session after it has been canceled, and it can not be uncanceled once it has been canceled. A session that has already started may not be canceled.
-
-        '
+      description: A session that is scheduled for the future may be canceled. No participants will be able to join the session after it has been canceled, and it can not be uncanceled once it has been canceled. A session that has already started may not be canceled.
       responses:
         '200':
           description: Participant cancelled
@@ -120,17 +114,6 @@ paths:
                     type: boolean
 components:
   schemas:
-    UpdateParticipant:
-      type: object
-      properties:
-        display_name:
-          type: string
-        picture:
-          type: string
-        role:
-          $ref: '#/components/schemas/Role'
-        state:
-          type: string
     Participant:
       type: object
       required:
@@ -173,6 +156,12 @@ components:
           format: uuid
         phone:
           type: string
+    Role:
+      type: string
+      enum:
+      - GUEST
+      - HOST
+      - PARTICIPANT
     CreateParticipant:
       type: object
       properties:
@@ -186,12 +175,17 @@ components:
           type: string
         phone:
           type: string
-    Role:
-      type: string
-      enum:
-      - GUEST
-      - HOST
-      - PARTICIPANT
+    UpdateParticipant:
+      type: object
+      properties:
+        display_name:
+          type: string
+        picture:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        state:
+          type: string
   securitySchemes:
     Basic:
       type: http

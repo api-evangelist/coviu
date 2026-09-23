@@ -235,15 +235,6 @@ paths:
                 format: binary
 components:
   schemas:
-    SubmissionDetail:
-      allOf:
-      - type: object
-        properties:
-          files:
-            type: array
-            items:
-              $ref: '#/components/schemas/SubmissionFile'
-      - $ref: '#/components/schemas/Submission'
     Submission:
       type: object
       properties:
@@ -272,6 +263,15 @@ components:
           format: date-time
         action_status:
           type: boolean
+    SubmissionDetail:
+      allOf:
+      - type: object
+        properties:
+          files:
+            type: array
+            items:
+              $ref: '#/components/schemas/SubmissionFile'
+      - $ref: '#/components/schemas/Submission'
     Collection:
       type: object
       required:
