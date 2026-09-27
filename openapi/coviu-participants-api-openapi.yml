@@ -114,6 +114,23 @@ paths:
                     type: boolean
 components:
   schemas:
+    Role:
+      type: string
+      enum:
+      - GUEST
+      - HOST
+      - PARTICIPANT
+    UpdateParticipant:
+      type: object
+      properties:
+        display_name:
+          type: string
+        picture:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        state:
+          type: string
     Participant:
       type: object
       required:
@@ -156,12 +173,6 @@ components:
           format: uuid
         phone:
           type: string
-    Role:
-      type: string
-      enum:
-      - GUEST
-      - HOST
-      - PARTICIPANT
     CreateParticipant:
       type: object
       properties:
@@ -174,17 +185,6 @@ components:
         state:
           type: string
         phone:
-          type: string
-    UpdateParticipant:
-      type: object
-      properties:
-        display_name:
-          type: string
-        picture:
-          type: string
-        role:
-          $ref: '#/components/schemas/Role'
-        state:
           type: string
   securitySchemes:
     Basic:

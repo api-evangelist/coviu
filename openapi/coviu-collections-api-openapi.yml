@@ -263,15 +263,6 @@ components:
           format: date-time
         action_status:
           type: boolean
-    SubmissionDetail:
-      allOf:
-      - type: object
-        properties:
-          files:
-            type: array
-            items:
-              $ref: '#/components/schemas/SubmissionFile'
-      - $ref: '#/components/schemas/Submission'
     Collection:
       type: object
       required:
@@ -330,6 +321,15 @@ components:
         updated_at:
           type: string
           format: date-time
+    SubmissionDetail:
+      allOf:
+      - type: object
+        properties:
+          files:
+            type: array
+            items:
+              $ref: '#/components/schemas/SubmissionFile'
+      - $ref: '#/components/schemas/Submission'
   securitySchemes:
     Basic:
       type: http

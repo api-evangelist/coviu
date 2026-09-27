@@ -262,12 +262,6 @@ paths:
                 $ref: '#/components/schemas/SessionSummary'
 components:
   schemas:
-    Role:
-      type: string
-      enum:
-      - GUEST
-      - HOST
-      - PARTICIPANT
     CreateSession:
       type: object
       required:
@@ -292,22 +286,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant'
-    SessionSummary:
-      type: object
-      properties:
-        start_time:
-          type: string
-          format: date-time
-        end_time:
-          type: string
-          format: date-time
-        actual_end_time:
-          type: string
-          format: date-time
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/ParticipantSummary'
+    Role:
+      type: string
+      enum:
+      - GUEST
+      - HOST
+      - PARTICIPANT
     UpdateSession:
       type: object
       properties:
@@ -323,48 +307,6 @@ components:
           type: string
           format: date-time
         picture:
-          type: string
-    Participant:
-      type: object
-      required:
-      - client_id
-      - display_name
-      - participant_id
-      - role
-      - session_id
-      - created
-      properties:
-        client_id:
-          type: string
-          format: uuid
-        display_name:
-          type: string
-          format: uuid
-        entry_url:
-          type: string
-          format: uuid
-        participant_id:
-          type: string
-          format: uuid
-        picture:
-          type: string
-          format: uuid
-        role:
-          $ref: '#/components/schemas/Role'
-        session_id:
-          type: string
-          format: uuid
-        state:
-          type: string
-        user_hint:
-          type: string
-        deleted_at:
-          type: string
-          format: date-time
-        coviu_user_id:
-          type: string
-          format: uuid
-        phone:
           type: string
     ParticipantSummary:
       type: object
@@ -432,6 +374,64 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Participant'
+    SessionSummary:
+      type: object
+      properties:
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipantSummary'
+    Participant:
+      type: object
+      required:
+      - client_id
+      - display_name
+      - participant_id
+      - role
+      - session_id
+      - created
+      properties:
+        client_id:
+          type: string
+          format: uuid
+        display_name:
+          type: string
+          format: uuid
+        entry_url:
+          type: string
+          format: uuid
+        participant_id:
+          type: string
+          format: uuid
+        picture:
+          type: string
+          format: uuid
+        role:
+          $ref: '#/components/schemas/Role'
+        session_id:
+          type: string
+          format: uuid
+        state:
+          type: string
+        user_hint:
+          type: string
+        deleted_at:
+          type: string
+          format: date-time
+        coviu_user_id:
+          type: string
+          format: uuid
+        phone:
+          type: string
   securitySchemes:
     Basic:
       type: http
