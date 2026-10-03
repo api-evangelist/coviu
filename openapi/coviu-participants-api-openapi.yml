@@ -114,23 +114,6 @@ paths:
                     type: boolean
 components:
   schemas:
-    Role:
-      type: string
-      enum:
-      - GUEST
-      - HOST
-      - PARTICIPANT
-    UpdateParticipant:
-      type: object
-      properties:
-        display_name:
-          type: string
-        picture:
-          type: string
-        role:
-          $ref: '#/components/schemas/Role'
-        state:
-          type: string
     Participant:
       type: object
       required:
@@ -186,6 +169,23 @@ components:
           type: string
         phone:
           type: string
+    UpdateParticipant:
+      type: object
+      properties:
+        display_name:
+          type: string
+        picture:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        state:
+          type: string
+    Role:
+      type: string
+      enum:
+      - GUEST
+      - HOST
+      - PARTICIPANT
   securitySchemes:
     Basic:
       type: http

@@ -235,6 +235,15 @@ paths:
                 format: binary
 components:
   schemas:
+    SubmissionDetail:
+      allOf:
+      - type: object
+        properties:
+          files:
+            type: array
+            items:
+              $ref: '#/components/schemas/SubmissionFile'
+      - $ref: '#/components/schemas/Submission'
     Submission:
       type: object
       properties:
@@ -321,15 +330,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    SubmissionDetail:
-      allOf:
-      - type: object
-        properties:
-          files:
-            type: array
-            items:
-              $ref: '#/components/schemas/SubmissionFile'
-      - $ref: '#/components/schemas/Submission'
   securitySchemes:
     Basic:
       type: http

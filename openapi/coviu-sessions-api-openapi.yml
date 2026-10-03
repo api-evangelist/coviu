@@ -262,13 +262,31 @@ paths:
                 $ref: '#/components/schemas/SessionSummary'
 components:
   schemas:
-    CreateSession:
+    SessionSummary:
+      type: object
+      properties:
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipantSummary'
+    Session:
       type: object
       required:
-      - session_name
-      - start_time
-      - end_time
+      - session_id
+      - participants
       properties:
+        session_id:
+          type: string
+          format: uuid
         session_name:
           type: string
         start_time:
@@ -282,32 +300,16 @@ components:
           format: date-time
         picture:
           type: string
+        team_id:
+          type: string
+          format: uuid
+        client_id:
+          type: string
+          format: uuid
         participants:
           type: array
           items:
             $ref: '#/components/schemas/Participant'
-    Role:
-      type: string
-      enum:
-      - GUEST
-      - HOST
-      - PARTICIPANT
-    UpdateSession:
-      type: object
-      properties:
-        session_name:
-          type: string
-        start_time:
-          type: string
-          format: date-time
-        end_time:
-          type: string
-          format: date-time
-        actual_end_time:
-          type: string
-          format: date-time
-        picture:
-          type: string
     ParticipantSummary:
       type: object
       properties:
@@ -342,15 +344,13 @@ components:
               type: number
             avg_receive_bandwidth:
               type: number
-    Session:
+    CreateSession:
       type: object
       required:
-      - session_id
-      - participants
+      - session_name
+      - start_time
+      - end_time
       properties:
-        session_id:
-          type: string
-          format: uuid
         session_name:
           type: string
         start_time:
@@ -364,19 +364,15 @@ components:
           format: date-time
         picture:
           type: string
-        team_id:
-          type: string
-          format: uuid
-        client_id:
-          type: string
-          format: uuid
         participants:
           type: array
           items:
             $ref: '#/components/schemas/Participant'
-    SessionSummary:
+    UpdateSession:
       type: object
       properties:
+        session_name:
+          type: string
         start_time:
           type: string
           format: date-time
@@ -386,10 +382,8 @@ components:
         actual_end_time:
           type: string
           format: date-time
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/ParticipantSummary'
+        picture:
+          type: string
     Participant:
       type: object
       required:
@@ -432,6 +426,12 @@ components:
           format: uuid
         phone:
           type: string
+    Role:
+      type: string
+      enum:
+      - GUEST
+      - HOST
+      - PARTICIPANT
   securitySchemes:
     Basic:
       type: http
