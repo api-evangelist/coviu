@@ -176,17 +176,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    WaitingAreaJoin:
-      allOf:
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - waitingarea:join
-      - $ref: '#/components/schemas/CallFields'
     ParticipantJoin:
       allOf:
       - type: object
@@ -198,52 +187,32 @@ components:
             enum:
             - participant:join
       - $ref: '#/components/schemas/ParticipantFields'
-    SessionCancel:
-      allOf:
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - session:delete
-      - $ref: '#/components/schemas/SessionFields'
-    CallTransfer:
-      allOf:
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - call:transfer
-          payload:
-            type: object
-            required:
-            - teamId
-            - callId
-            - destinationTeamId
-            properties:
-              destinationTeamId:
-                type: string
-                format: uuid
-              destinationWaitingQueueId:
-                type: string
-                format: uuid
-      - $ref: '#/components/schemas/CallFields'
-    ParticipantOnHold:
-      allOf:
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - participant:on-hold
-      - $ref: '#/components/schemas/ParticipantFields'
+    ParticipantFields:
+      type: object
+      required:
+      - payload
+      - createdAt
+      properties:
+        createdAt:
+          type: number
+        payload:
+          type: object
+          required:
+          - teamId
+          - participantId
+          properties:
+            teamId:
+              type: string
+              format: uuid
+            sessionId:
+              type: string
+              format: uuid
+            waitingQueueId:
+              type: string
+              format: uuid
+            participantId:
+              type: string
+              format: uuid
     DataCollectionFields:
       type: object
       required:
@@ -279,7 +248,7 @@ components:
               - media
               - voicemail
               - combination
-    CallUpdated:
+    ParticipantOnHold:
       allOf:
       - type: object
         required:
@@ -288,9 +257,9 @@ components:
           type:
             type: string
             enum:
-            - call:updated
-      - $ref: '#/components/schemas/CallFields'
-    WaitingAreaEndCall:
+            - participant:on-hold
+      - $ref: '#/components/schemas/ParticipantFields'
+    SessionUpdate:
       allOf:
       - type: object
         required:
@@ -299,7 +268,62 @@ components:
           type:
             type: string
             enum:
-            - waitingarea:end-call
+            - session:update
+      - $ref: '#/components/schemas/SessionFields'
+    SessionCreate:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - session:create
+      - $ref: '#/components/schemas/SessionFields'
+    CallFields:
+      type: object
+      required:
+      - payload
+      - createdAt
+      properties:
+        createdAt:
+          type: number
+        payload:
+          type: object
+          properties:
+            teamId:
+              type: string
+              format: uuid
+            callId:
+              type: string
+              format: uuid
+            waitingQueueId:
+              type: string
+              format: uuid
+    DataCollectionItemSaved:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - datacollectionitem:saved
+            x-enumDescriptions:
+              datacollectionitem:saved: Data Collection Item Saved
+      - $ref: '#/components/schemas/DataCollectionFields'
+    WaitingAreaJoin:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - waitingarea:join
       - $ref: '#/components/schemas/CallFields'
     SessionFields:
       type: object
@@ -321,96 +345,6 @@ components:
             sessionId:
               type: string
               format: uuid
-    ParticipantFields:
-      type: object
-      required:
-      - payload
-      - createdAt
-      properties:
-        createdAt:
-          type: number
-        payload:
-          type: object
-          required:
-          - teamId
-          - participantId
-          properties:
-            teamId:
-              type: string
-              format: uuid
-            sessionId:
-              type: string
-              format: uuid
-            waitingQueueId:
-              type: string
-              format: uuid
-            participantId:
-              type: string
-              format: uuid
-    WaitingAreaAnswer:
-      allOf:
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - waitingarea:answer
-      - $ref: '#/components/schemas/CallFields'
-    CallFields:
-      type: object
-      required:
-      - payload
-      - createdAt
-      properties:
-        createdAt:
-          type: number
-        payload:
-          type: object
-          properties:
-            teamId:
-              type: string
-              format: uuid
-            callId:
-              type: string
-              format: uuid
-            waitingQueueId:
-              type: string
-              format: uuid
-    ParticipantLeave:
-      allOf:
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - participant:leave
-      - $ref: '#/components/schemas/ParticipantFields'
-    SessionUpdate:
-      allOf:
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - session:update
-      - $ref: '#/components/schemas/SessionFields'
-    CallEnd:
-      allOf:
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - call:end
-      - $ref: '#/components/schemas/CallFields'
     WaitingAreaLeave:
       allOf:
       - type: object
@@ -422,7 +356,7 @@ components:
             enum:
             - waitingarea:leave
       - $ref: '#/components/schemas/CallFields'
-    DataCollectionItemSaved:
+    WaitingAreaEndCall:
       allOf:
       - type: object
         required:
@@ -431,11 +365,9 @@ components:
           type:
             type: string
             enum:
-            - datacollectionitem:saved
-            x-enumDescriptions:
-              datacollectionitem:saved: Data Collection Item Saved
-      - $ref: '#/components/schemas/DataCollectionFields'
-    SessionCreate:
+            - waitingarea:end-call
+      - $ref: '#/components/schemas/CallFields'
+    CallEnd:
       allOf:
       - type: object
         required:
@@ -444,8 +376,76 @@ components:
           type:
             type: string
             enum:
-            - session:create
+            - call:end
+      - $ref: '#/components/schemas/CallFields'
+    CallUpdated:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - call:updated
+      - $ref: '#/components/schemas/CallFields'
+    CallTransfer:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - call:transfer
+          payload:
+            type: object
+            required:
+            - teamId
+            - callId
+            - destinationTeamId
+            properties:
+              destinationTeamId:
+                type: string
+                format: uuid
+              destinationWaitingQueueId:
+                type: string
+                format: uuid
+      - $ref: '#/components/schemas/CallFields'
+    WaitingAreaAnswer:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - waitingarea:answer
+      - $ref: '#/components/schemas/CallFields'
+    SessionCancel:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - session:delete
       - $ref: '#/components/schemas/SessionFields'
+    ParticipantLeave:
+      allOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - participant:leave
+      - $ref: '#/components/schemas/ParticipantFields'
   securitySchemes:
     Basic:
       type: http

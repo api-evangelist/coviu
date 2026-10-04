@@ -262,6 +262,36 @@ paths:
                 $ref: '#/components/schemas/SessionSummary'
 components:
   schemas:
+    CreateSession:
+      type: object
+      required:
+      - session_name
+      - start_time
+      - end_time
+      properties:
+        session_name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        picture:
+          type: string
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+    Role:
+      type: string
+      enum:
+      - GUEST
+      - HOST
+      - PARTICIPANT
     SessionSummary:
       type: object
       properties:
@@ -278,38 +308,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ParticipantSummary'
-    Session:
-      type: object
-      required:
-      - session_id
-      - participants
-      properties:
-        session_id:
-          type: string
-          format: uuid
-        session_name:
-          type: string
-        start_time:
-          type: string
-          format: date-time
-        end_time:
-          type: string
-          format: date-time
-        actual_end_time:
-          type: string
-          format: date-time
-        picture:
-          type: string
-        team_id:
-          type: string
-          format: uuid
-        client_id:
-          type: string
-          format: uuid
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
     ParticipantSummary:
       type: object
       properties:
@@ -344,46 +342,6 @@ components:
               type: number
             avg_receive_bandwidth:
               type: number
-    CreateSession:
-      type: object
-      required:
-      - session_name
-      - start_time
-      - end_time
-      properties:
-        session_name:
-          type: string
-        start_time:
-          type: string
-          format: date-time
-        end_time:
-          type: string
-          format: date-time
-        actual_end_time:
-          type: string
-          format: date-time
-        picture:
-          type: string
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
-    UpdateSession:
-      type: object
-      properties:
-        session_name:
-          type: string
-        start_time:
-          type: string
-          format: date-time
-        end_time:
-          type: string
-          format: date-time
-        actual_end_time:
-          type: string
-          format: date-time
-        picture:
-          type: string
     Participant:
       type: object
       required:
@@ -426,12 +384,54 @@ components:
           format: uuid
         phone:
           type: string
-    Role:
-      type: string
-      enum:
-      - GUEST
-      - HOST
-      - PARTICIPANT
+    Session:
+      type: object
+      required:
+      - session_id
+      - participants
+      properties:
+        session_id:
+          type: string
+          format: uuid
+        session_name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        picture:
+          type: string
+        team_id:
+          type: string
+          format: uuid
+        client_id:
+          type: string
+          format: uuid
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+    UpdateSession:
+      type: object
+      properties:
+        session_name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        actual_end_time:
+          type: string
+          format: date-time
+        picture:
+          type: string
   securitySchemes:
     Basic:
       type: http

@@ -114,6 +114,17 @@ paths:
                     type: boolean
 components:
   schemas:
+    UpdateParticipant:
+      type: object
+      properties:
+        display_name:
+          type: string
+        picture:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        state:
+          type: string
     Participant:
       type: object
       required:
@@ -168,17 +179,6 @@ components:
         state:
           type: string
         phone:
-          type: string
-    UpdateParticipant:
-      type: object
-      properties:
-        display_name:
-          type: string
-        picture:
-          type: string
-        role:
-          $ref: '#/components/schemas/Role'
-        state:
           type: string
     Role:
       type: string
