@@ -1,10 +1,38 @@
-generated: '2026-07-24'
-method: derived
-source: openapi/coviu-rest-api-openapi.json
+generated: '2026-10-14'
+method: none
+source: openapi/coviu-auth-api-openapi.yml, openapi/coviu-collections-api-openapi.yml, openapi/coviu-participants-api-openapi.yml,
+  openapi/coviu-sessions-api-openapi.yml, openapi/coviu-waiting-area-api-openapi.yml, openapi/coviu-webhook-requests-api-openapi.yml
 schemes:
 - name: ClientCredentials
-  source: openapi/coviu-rest-api-openapi.json
+  source: openapi/coviu-auth-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/auth/token
+- name: ClientCredentials
+  source: openapi/coviu-collections-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/auth/token
+- name: ClientCredentials
+  source: openapi/coviu-participants-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/auth/token
+- name: ClientCredentials
+  source: openapi/coviu-sessions-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/auth/token
+- name: ClientCredentials
+  source: openapi/coviu-waiting-area-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/auth/token
+- name: ClientCredentials
+  source: openapi/coviu-webhook-requests-api-openapi.yml
   flows:
   - flow: clientCredentials
     tokenUrl: /v1/auth/token
 scopes: []
+note: The OAuth2 security scheme(s) in the OpenAPI declare no scopes, and no security requirement
+  references one.
