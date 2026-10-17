@@ -244,6 +244,21 @@ components:
             items:
               $ref: '#/components/schemas/SubmissionFile'
       - $ref: '#/components/schemas/Submission'
+    SubmissionFile:
+      type: object
+      properties:
+        id:
+          type: string
+        metadata:
+          type: object
+        size:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
     Collection:
       type: object
       required:
@@ -315,21 +330,6 @@ components:
           format: date-time
         action_status:
           type: boolean
-    SubmissionFile:
-      type: object
-      properties:
-        id:
-          type: string
-        metadata:
-          type: object
-        size:
-          type: number
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
   securitySchemes:
     Basic:
       type: http

@@ -125,6 +125,12 @@ components:
           $ref: '#/components/schemas/Role'
         state:
           type: string
+    Role:
+      type: string
+      enum:
+      - GUEST
+      - HOST
+      - PARTICIPANT
     Participant:
       type: object
       required:
@@ -180,12 +186,6 @@ components:
           type: string
         phone:
           type: string
-    Role:
-      type: string
-      enum:
-      - GUEST
-      - HOST
-      - PARTICIPANT
   securitySchemes:
     Basic:
       type: http
