@@ -284,6 +284,8 @@ apis:
   - type: Authentication
     url: https://coviu.readme.io/reference/webhook-authentication
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/coviu/overview
 - type: DomainSecurity
   url: security/coviu-domain-security.yml
 - type: OAuthScopes
