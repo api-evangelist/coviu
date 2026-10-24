@@ -1,0 +1,197 @@
+{
+  "info": {
+    "_postman_id": "e53a98a6-2d41-46b5-a0d9-c3163619d37d",
+    "name": "Coviu REST Auth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:07.000Z",
+    "updatedAt": "2026-10-21T20:23:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e53a98a6-2d41-46b5-a0d9-c3163619d37d"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "auth",
+          "item": [
+            {
+              "name": "token",
+              "item": [
+                {
+                  "name": "Request access token",
+                  "id": "0645a089-773a-4b21-94b1-e04178c0a1e7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-url-encoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"grant_type\": \"client_credentials\"\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/auth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "auth",
+                        "token"
+                      ]
+                    },
+                    "description": "Request an access token using one of the supported OAuth2 grant types:\n## Client Credentials\n\n- HTTP Basic Auth, passing the Client ID and Client Secret as the username and password\n\n- `application/x-www-form-urlencoded` data, containing:\n\n- `{ grant_type: \"client_credentials\" }`\n\n## Authorization Code\n\n- HTTP Basic Auth, passing the Client ID and Client Secret as the username and password\n\n- `application/x-www-form-urlencoded` data, containing:\n\n- ```\n{\ngrant_type: \"authorization_code\",\ncode: \"eyJ0eXAi....\"\n}\n```\n\n## Refresh Token\n\n- HTTP Basic Auth, passing the Client ID and Client Secret as the username and password\n\n- `application/x-www-form-urlencoded` data, containing:\n\n- ```\n{\ngrant_type: \"refresh_token\",\nrefresh_token: \"eyJ0eXAi....\"\n}\n```"
+                  },
+                  "response": [
+                    {
+                      "id": "4e27bdfa-973d-4838-8189-a1af47eb873f",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-url-encoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"grant_type\": \"client_credentials\"\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/auth/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "auth",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"access_token\": \"<string>\",\n  \"refresh_token\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"token_type\": \"Bearer\",\n  \"scope\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:23:08.000Z",
+                      "updatedAt": "2026-10-21T20:23:08.000Z",
+                      "uid": "35240-4e27bdfa-973d-4838-8189-a1af47eb873f"
+                    },
+                    {
+                      "id": "36f68e94-e26f-4762-98b2-fa97b796a225",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-url-encoded"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"grant_type\": \"client_credentials\"\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/auth/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "auth",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:23:08.000Z",
+                      "updatedAt": "2026-10-21T20:23:08.000Z",
+                      "uid": "35240-36f68e94-e26f-4762-98b2-fa97b796a225"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:23:08.000Z",
+                  "updatedAt": "2026-10-21T20:23:08.000Z",
+                  "uid": "35240-0645a089-773a-4b21-94b1-e04178c0a1e7"
+                }
+              ],
+              "id": "b86664ce-9a43-49e9-931a-48bfa06f64f4",
+              "createdAt": "2026-10-21T20:23:08.000Z",
+              "updatedAt": "2026-10-21T20:23:08.000Z",
+              "uid": "35240-b86664ce-9a43-49e9-931a-48bfa06f64f4"
+            }
+          ],
+          "id": "860739dd-d9ec-4041-88a5-d0597d4fdb84",
+          "createdAt": "2026-10-21T20:23:08.000Z",
+          "updatedAt": "2026-10-21T20:23:08.000Z",
+          "uid": "35240-860739dd-d9ec-4041-88a5-d0597d4fdb84"
+        }
+      ],
+      "id": "1a558152-d117-49fe-bcb5-4587f68259c4",
+      "createdAt": "2026-10-21T20:23:08.000Z",
+      "updatedAt": "2026-10-21T20:23:08.000Z",
+      "uid": "35240-1a558152-d117-49fe-bcb5-4587f68259c4"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.coviu.com"
+    }
+  ]
+}

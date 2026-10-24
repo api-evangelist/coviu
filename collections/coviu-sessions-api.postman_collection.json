@@ -1,0 +1,765 @@
+{
+  "info": {
+    "_postman_id": "4b4cb97e-93f7-4d3f-bb5c-21f412191acc",
+    "name": "Coviu REST Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:25.000Z",
+    "updatedAt": "2026-10-21T20:23:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4b4cb97e-93f7-4d3f-bb5c-21f412191acc"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "sessions",
+          "item": [
+            {
+              "name": "{session_id}",
+              "item": [
+                {
+                  "name": "summary",
+                  "item": [
+                    {
+                      "name": "Get Session Summary",
+                      "id": "77748422-89e1-411c-94bb-b294015ebb69",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sessions/:session_id/summary",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sessions",
+                            ":session_id",
+                            "summary"
+                          ],
+                          "variable": [
+                            {
+                              "id": "65ee9d6f-eaf0-4d8f-99ec-7bb9445d18f2",
+                              "key": "session_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Here is some further information on the timestamps provided in the response:\n\n- Start time - Scheduled start time for the session\n- End time - Scheduled end time for the session\n- Actual start time - Creation time of the call, typically when host has joined\n- Actual end time - Call recorded as complete, last participant has left\n- Participant entry time - Earliest recorded entry time for the participant, does not include time in Waiting Room\n- Participant exit time - Latest recorded exit time for the participant."
+                      },
+                      "response": [
+                        {
+                          "id": "2b8cc8b1-5649-4723-aa66-b5efa229b705",
+                          "name": "Session Summary",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/sessions/:session_id/summary",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "sessions",
+                                ":session_id",
+                                "summary"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "session_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"actual_end_time\": \"<dateTime>\",\n  \"participants\": [\n    {\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"GUEST\",\n      \"entry_time\": \"<dateTime>\",\n      \"exit_time\": {\n        \"left_at\": \"<dateTime>\",\n        \"left_reason\": \"<string>\"\n      },\n      \"bandwidth\": {\n        \"min_sent_bandwidth\": \"<number>\",\n        \"max_sent_bandwidth\": \"<number>\",\n        \"avg_sent_bandwidth\": \"<number>\",\n        \"min_receive_bandwidth\": \"<number>\",\n        \"max_receive_bandwidth\": \"<number>\",\n        \"avg_receive_bandwidth\": \"<number>\"\n      }\n    },\n    {\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"PARTICIPANT\",\n      \"entry_time\": \"<dateTime>\",\n      \"exit_time\": {\n        \"left_at\": \"<dateTime>\",\n        \"left_reason\": \"<string>\"\n      },\n      \"bandwidth\": {\n        \"min_sent_bandwidth\": \"<number>\",\n        \"max_sent_bandwidth\": \"<number>\",\n        \"avg_sent_bandwidth\": \"<number>\",\n        \"min_receive_bandwidth\": \"<number>\",\n        \"max_receive_bandwidth\": \"<number>\",\n        \"avg_receive_bandwidth\": \"<number>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:23:26.000Z",
+                          "updatedAt": "2026-10-21T20:23:26.000Z",
+                          "uid": "35240-2b8cc8b1-5649-4723-aa66-b5efa229b705"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:26.000Z",
+                      "updatedAt": "2026-10-21T20:23:26.000Z",
+                      "uid": "35240-77748422-89e1-411c-94bb-b294015ebb69"
+                    }
+                  ],
+                  "id": "b0e99f71-aa72-43c1-8760-be4b884991f1",
+                  "createdAt": "2026-10-21T20:23:26.000Z",
+                  "updatedAt": "2026-10-21T20:23:26.000Z",
+                  "uid": "35240-b0e99f71-aa72-43c1-8760-be4b884991f1"
+                },
+                {
+                  "name": "Get a Session",
+                  "id": "da3f1190-cbb0-4afa-b884-1d30a3514830",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sessions/:session_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sessions",
+                        ":session_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ad27bdb6-0266-47ba-8bfc-483ddeb09905",
+                          "key": "session_id",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "8cec7a72-1a8e-435e-9917-9dee2ec917d5",
+                      "name": "Session",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sessions/:session_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sessions",
+                            ":session_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"session_id\": \"<uuid>\",\n  \"participants\": [\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"PARTICIPANT\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"PARTICIPANT\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"session_name\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"actual_end_time\": \"<dateTime>\",\n  \"picture\": \"<string>\",\n  \"team_id\": \"<uuid>\",\n  \"client_id\": \"<uuid>\"\n}",
+                      "createdAt": "2026-10-21T20:23:26.000Z",
+                      "updatedAt": "2026-10-21T20:23:26.000Z",
+                      "uid": "35240-8cec7a72-1a8e-435e-9917-9dee2ec917d5"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:23:26.000Z",
+                  "updatedAt": "2026-10-21T20:23:26.000Z",
+                  "uid": "35240-da3f1190-cbb0-4afa-b884-1d30a3514830"
+                },
+                {
+                  "name": "Update a Session",
+                  "id": "b1a7bd54-166e-408b-920e-96be80d596ef",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"session_name\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"actual_end_time\": \"<dateTime>\",\n  \"picture\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sessions/:session_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sessions",
+                        ":session_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "20de698a-e02f-4a84-821c-d73880111c74",
+                          "key": "session_id",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "ab7cc5fb-52dc-44b9-8873-497034a61ccf",
+                      "name": "Session updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"session_name\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"actual_end_time\": \"<dateTime>\",\n  \"picture\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sessions/:session_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sessions",
+                            ":session_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"session_id\": \"<uuid>\",\n  \"participants\": [\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"PARTICIPANT\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"PARTICIPANT\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"session_name\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"actual_end_time\": \"<dateTime>\",\n  \"picture\": \"<string>\",\n  \"team_id\": \"<uuid>\",\n  \"client_id\": \"<uuid>\"\n}",
+                      "createdAt": "2026-10-21T20:23:26.000Z",
+                      "updatedAt": "2026-10-21T20:23:26.000Z",
+                      "uid": "35240-ab7cc5fb-52dc-44b9-8873-497034a61ccf"
+                    },
+                    {
+                      "id": "048dbb60-9b08-473c-900f-8a28cee14ae0",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"session_name\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"actual_end_time\": \"<dateTime>\",\n  \"picture\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sessions/:session_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sessions",
+                            ":session_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:23:26.000Z",
+                      "updatedAt": "2026-10-21T20:23:26.000Z",
+                      "uid": "35240-048dbb60-9b08-473c-900f-8a28cee14ae0"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:23:26.000Z",
+                  "updatedAt": "2026-10-21T20:23:26.000Z",
+                  "uid": "35240-b1a7bd54-166e-408b-920e-96be80d596ef"
+                },
+                {
+                  "name": "Cancel a Session",
+                  "id": "6bf954fb-1da3-4ab9-b6fe-2669cc920639",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sessions/:session_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sessions",
+                        ":session_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eba60abb-99fc-45ef-920b-cf37227edc70",
+                          "key": "session_id",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "59c73379-7863-40bd-92dc-3b4dcafb4368",
+                      "name": "Cancelled",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/sessions/:session_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "sessions",
+                            ":session_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ok\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-21T20:23:26.000Z",
+                      "updatedAt": "2026-10-21T20:23:26.000Z",
+                      "uid": "35240-59c73379-7863-40bd-92dc-3b4dcafb4368"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:23:26.000Z",
+                  "updatedAt": "2026-10-21T20:23:26.000Z",
+                  "uid": "35240-6bf954fb-1da3-4ab9-b6fe-2669cc920639"
+                }
+              ],
+              "id": "ff99b103-eb68-4e3c-b1c8-891df88dcb98",
+              "createdAt": "2026-10-21T20:23:26.000Z",
+              "updatedAt": "2026-10-21T20:23:26.000Z",
+              "uid": "35240-ff99b103-eb68-4e3c-b1c8-891df88dcb98"
+            },
+            {
+              "name": "Create a Session",
+              "id": "cfb75eb1-3d77-4c17-bcaf-6e3face77e9b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_name\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"actual_end_time\": \"<dateTime>\",\n  \"picture\": \"<string>\",\n  \"participants\": [\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"HOST\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"HOST\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/sessions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "sessions"
+                  ]
+                },
+                "description": "There are some further options you are able to pass through a \"feature_flags\" field when creating a session. These allow some customisation of the interface\n\n## Custom features for Sessions\n\nCustom feature can be added while creating a Session and it can be done by passing values into the feature_flags array.\n\n**Example Feature Flags option**\n\n```text\nfeature_flags: [\n\n'-plugin;coviu-waiting-room-plugin',\n\n'-plugin;coviu-stripe-payments-resource-plugin',\n\n'customisation;disable-menu',\n\n'customisation;exit-url;https://your-exit-url',\n\n'customisation;return-url;https://your-return-url',\n\n'customisation;return-label;Your return label',\n\n'customisation;auto-return',\n\n'session;enforce-participant-uniqueness',\n\n'customisation;favicon-url;https://yourdomain.com/favicon.ico'\n]\n```\n\n**What do they do?**\n\n| Feature Flag | What it does ? |\n| :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| \\-plugin | Removes standard Coviu plugins from the session room |\n| customisation;disable-menu | Removes the menu from the session room |\n| customisation;exit-url | Add a specific URL to wherever you would like to redirect to if the user exits the call interface using the \"Exit call interface\" button prior to other participants joining |\n| customisation;return-url | Add a specific URL to wherever you would like to redirect to after the call has completed from the exit screen |\n| customisation;return-label | To label the button that does the return URL navigation. |\n| customisation;auto-return | Automatically redirect to the return-url after hitting the \"end call\" button |\n| session;enforce-participant-uniqueness | Allow for the unique use of the participant's URL - it can't be re-used after first entry |\n| customisation;favicon-url; | Allow for the use of your favicon in the call |\n| customisation;background-color;{value} | Allows for using a custom background colour in the Coviu call window |\n| customisation;button-primary;{value} | Allows for using a custom button colour in the Coviu call window |\n| customisation;button-secondary;{value} | Allows for using a custom colour for the content inside the button in the Coviu call window |"
+              },
+              "response": [
+                {
+                  "id": "1c0ca000-d063-49b0-83ac-1817834b946e",
+                  "name": "Session created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"session_name\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"actual_end_time\": \"<dateTime>\",\n  \"picture\": \"<string>\",\n  \"participants\": [\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"HOST\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"HOST\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sessions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sessions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"session_id\": \"<uuid>\",\n  \"participants\": [\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"PARTICIPANT\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"PARTICIPANT\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"session_name\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"actual_end_time\": \"<dateTime>\",\n  \"picture\": \"<string>\",\n  \"team_id\": \"<uuid>\",\n  \"client_id\": \"<uuid>\"\n}",
+                  "createdAt": "2026-10-21T20:23:26.000Z",
+                  "updatedAt": "2026-10-21T20:23:26.000Z",
+                  "uid": "35240-1c0ca000-d063-49b0-83ac-1817834b946e"
+                },
+                {
+                  "id": "fff2e5a8-e780-4dac-8a0b-61900d02212d",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"session_name\": \"<string>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\",\n  \"actual_end_time\": \"<dateTime>\",\n  \"picture\": \"<string>\",\n  \"participants\": [\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"HOST\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"client_id\": \"<uuid>\",\n      \"display_name\": \"<uuid>\",\n      \"participant_id\": \"<uuid>\",\n      \"role\": \"HOST\",\n      \"session_id\": \"<uuid>\",\n      \"entry_url\": \"<uuid>\",\n      \"picture\": \"<uuid>\",\n      \"state\": \"<string>\",\n      \"user_hint\": \"<string>\",\n      \"deleted_at\": \"<dateTime>\",\n      \"coviu_user_id\": \"<uuid>\",\n      \"phone\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sessions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sessions"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:23:26.000Z",
+                  "updatedAt": "2026-10-21T20:23:26.000Z",
+                  "uid": "35240-fff2e5a8-e780-4dac-8a0b-61900d02212d"
+                }
+              ],
+              "createdAt": "2026-10-21T20:23:26.000Z",
+              "updatedAt": "2026-10-21T20:23:26.000Z",
+              "uid": "35240-cfb75eb1-3d77-4c17-bcaf-6e3face77e9b"
+            },
+            {
+              "name": "List Sessions",
+              "id": "9a5f4da8-51b3-4435-b798-f437cff2c8bf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/sessions?page=<integer>&page_size=<integer>&start_time=<dateTime>&end_time=<dateTime>&order=reverse&include_canceled=<string>&deleted_participants=<string>&state=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "sessions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Zero based index",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of entries to return",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Include sessions whose start time falls after the given start time",
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Include sessions whose end time falls before the given end time",
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Orders the returned sessions",
+                      "key": "order",
+                      "value": "reverse"
+                    },
+                    {
+                      "description": "Include sessions that have been cancelled.",
+                      "key": "include_canceled",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include participants that have been removed from the session.",
+                      "key": "deleted_participants",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Limit the response to sessions with participants with specific state value.",
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1b6654c7-a248-4f97-ad18-2c7fe3c77b13",
+                  "name": "List of sessions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sessions?page=<integer>&page_size=<integer>&start_time=<dateTime>&end_time=<dateTime>&order=reverse&include_canceled=<string>&deleted_participants=<string>&state=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sessions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Zero based index",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of entries to return",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Include sessions whose start time falls after the given start time",
+                          "key": "start_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Include sessions whose end time falls before the given end time",
+                          "key": "end_time",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Orders the returned sessions",
+                          "key": "order",
+                          "value": "reverse"
+                        },
+                        {
+                          "description": "Include sessions that have been cancelled.",
+                          "key": "include_canceled",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Include participants that have been removed from the session.",
+                          "key": "deleted_participants",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Limit the response to sessions with participants with specific state value.",
+                          "key": "state",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"content\": [\n    {\n      \"session_id\": \"<uuid>\",\n      \"participants\": [\n        {\n          \"client_id\": \"<uuid>\",\n          \"display_name\": \"<uuid>\",\n          \"participant_id\": \"<uuid>\",\n          \"role\": \"HOST\",\n          \"session_id\": \"<uuid>\",\n          \"entry_url\": \"<uuid>\",\n          \"picture\": \"<uuid>\",\n          \"state\": \"<string>\",\n          \"user_hint\": \"<string>\",\n          \"deleted_at\": \"<dateTime>\",\n          \"coviu_user_id\": \"<uuid>\",\n          \"phone\": \"<string>\"\n        },\n        {\n          \"client_id\": \"<uuid>\",\n          \"display_name\": \"<uuid>\",\n          \"participant_id\": \"<uuid>\",\n          \"role\": \"GUEST\",\n          \"session_id\": \"<uuid>\",\n          \"entry_url\": \"<uuid>\",\n          \"picture\": \"<uuid>\",\n          \"state\": \"<string>\",\n          \"user_hint\": \"<string>\",\n          \"deleted_at\": \"<dateTime>\",\n          \"coviu_user_id\": \"<uuid>\",\n          \"phone\": \"<string>\"\n        }\n      ],\n      \"session_name\": \"<string>\",\n      \"start_time\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\",\n      \"actual_end_time\": \"<dateTime>\",\n      \"picture\": \"<string>\",\n      \"team_id\": \"<uuid>\",\n      \"client_id\": \"<uuid>\"\n    },\n    {\n      \"session_id\": \"<uuid>\",\n      \"participants\": [\n        {\n          \"client_id\": \"<uuid>\",\n          \"display_name\": \"<uuid>\",\n          \"participant_id\": \"<uuid>\",\n          \"role\": \"GUEST\",\n          \"session_id\": \"<uuid>\",\n          \"entry_url\": \"<uuid>\",\n          \"picture\": \"<uuid>\",\n          \"state\": \"<string>\",\n          \"user_hint\": \"<string>\",\n          \"deleted_at\": \"<dateTime>\",\n          \"coviu_user_id\": \"<uuid>\",\n          \"phone\": \"<string>\"\n        },\n        {\n          \"client_id\": \"<uuid>\",\n          \"display_name\": \"<uuid>\",\n          \"participant_id\": \"<uuid>\",\n          \"role\": \"HOST\",\n          \"session_id\": \"<uuid>\",\n          \"entry_url\": \"<uuid>\",\n          \"picture\": \"<uuid>\",\n          \"state\": \"<string>\",\n          \"user_hint\": \"<string>\",\n          \"deleted_at\": \"<dateTime>\",\n          \"coviu_user_id\": \"<uuid>\",\n          \"phone\": \"<string>\"\n        }\n      ],\n      \"session_name\": \"<string>\",\n      \"start_time\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\",\n      \"actual_end_time\": \"<dateTime>\",\n      \"picture\": \"<string>\",\n      \"team_id\": \"<uuid>\",\n      \"client_id\": \"<uuid>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"more\": \"<boolean>\"\n}",
+                  "createdAt": "2026-10-21T20:23:26.000Z",
+                  "updatedAt": "2026-10-21T20:23:26.000Z",
+                  "uid": "35240-1b6654c7-a248-4f97-ad18-2c7fe3c77b13"
+                }
+              ],
+              "createdAt": "2026-10-21T20:23:26.000Z",
+              "updatedAt": "2026-10-21T20:23:26.000Z",
+              "uid": "35240-9a5f4da8-51b3-4435-b798-f437cff2c8bf"
+            }
+          ],
+          "id": "114c7a07-3cd9-427f-817c-877a57037759",
+          "createdAt": "2026-10-21T20:23:26.000Z",
+          "updatedAt": "2026-10-21T20:23:26.000Z",
+          "uid": "35240-114c7a07-3cd9-427f-817c-877a57037759"
+        }
+      ],
+      "id": "425d1e06-4330-4a44-95ed-b17dbbbe312a",
+      "createdAt": "2026-10-21T20:23:26.000Z",
+      "updatedAt": "2026-10-21T20:23:26.000Z",
+      "uid": "35240-425d1e06-4330-4a44-95ed-b17dbbbe312a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.coviu.com"
+    }
+  ]
+}

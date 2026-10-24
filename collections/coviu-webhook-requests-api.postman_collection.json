@@ -1,0 +1,111 @@
+{
+  "info": {
+    "_postman_id": "9597f957-04ce-4b03-9c9a-5af7478947d6",
+    "name": "Coviu REST Webhook Requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:38.000Z",
+    "updatedAt": "2026-10-21T20:23:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9597f957-04ce-4b03-9c9a-5af7478947d6"
+  },
+  "item": [
+    {
+      "name": "webhook",
+      "item": [
+        {
+          "name": "Create webhook",
+          "id": "62eeaf0f-b6be-4d26-961a-b82af26117f9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"createdAt\": \"<number>\",\n  \"payload\": {\n    \"teamId\": \"<uuid>\",\n    \"callId\": \"<uuid>\",\n    \"waitingQueueId\": \"<uuid>\"\n  },\n  \"type\": \"waitingarea:join\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhook",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook"
+              ]
+            },
+            "description": "The events and payloads documented in this section are webhooks \u2014 they are not endpoints your system should call, but rather requests that will be sent from our servers to your system when relevant events occur. These webhook payloads are delivered as HTTP POST requests to a URL you configure during integration.\n\nThis page documents all events the webhooks can be configured to fire, and the structure of the payloads your system should expect to receive. Your system must expose an endpoint to receive these POST requests, and handle the incoming JSON payload according to the schema.\n\nNote: You should respond with a 2xx HTTP status code to acknowledge receipt. The system will not retry requests upon failure."
+          },
+          "response": [
+            {
+              "id": "2e2b1b55-2128-41ad-960f-21eaab5959c3",
+              "name": "New Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdAt\": \"<number>\",\n  \"payload\": {\n    \"teamId\": \"<uuid>\",\n    \"callId\": \"<uuid>\",\n    \"waitingQueueId\": \"<uuid>\"\n  },\n  \"type\": \"waitingarea:join\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-21T20:23:39.000Z",
+              "updatedAt": "2026-10-21T20:23:39.000Z",
+              "uid": "35240-2e2b1b55-2128-41ad-960f-21eaab5959c3"
+            }
+          ],
+          "createdAt": "2026-10-21T20:23:39.000Z",
+          "updatedAt": "2026-10-21T20:23:39.000Z",
+          "uid": "35240-62eeaf0f-b6be-4d26-961a-b82af26117f9"
+        }
+      ],
+      "id": "3d4407f4-04dc-4be3-9912-39beee352c07",
+      "createdAt": "2026-10-21T20:23:39.000Z",
+      "updatedAt": "2026-10-21T20:23:39.000Z",
+      "uid": "35240-3d4407f4-04dc-4be3-9912-39beee352c07"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.coviu.com"
+    }
+  ]
+}

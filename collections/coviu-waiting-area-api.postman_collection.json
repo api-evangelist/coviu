@@ -1,0 +1,360 @@
+{
+  "info": {
+    "_postman_id": "009c206b-44fd-48d4-aac0-95481ea08252",
+    "name": "Coviu REST Waiting Area API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:31.000Z",
+    "updatedAt": "2026-10-21T20:23:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-009c206b-44fd-48d4-aac0-95481ea08252"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "waiting",
+          "item": [
+            {
+              "name": "{teamId}",
+              "item": [
+                {
+                  "name": "queue",
+                  "item": [
+                    {
+                      "name": "{waitingQueueId}",
+                      "item": [
+                        {
+                          "name": "Get Currently Waiting Calls for a Queue",
+                          "id": "b68940ac-9017-49f2-98fb-3923455b51d9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/waiting/:teamId/queue/:waitingQueueId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "waiting",
+                                ":teamId",
+                                "queue",
+                                ":waitingQueueId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "34f2c8f6-b769-464f-921f-a8b7ef651f28",
+                                  "key": "teamId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "99ab5271-212d-4852-bd4a-1d990f76e9ec",
+                                  "key": "waitingQueueId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "b106ac02-fbb2-4a8e-8bdb-c2c091a60e9b",
+                              "name": "List of waiting calls",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/waiting/:teamId/queue/:waitingQueueId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "waiting",
+                                    ":teamId",
+                                    "queue",
+                                    ":waitingQueueId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamId"
+                                    },
+                                    {
+                                      "key": "waitingQueueId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"callId\": \"<uuid>\",\n    \"teamId\": \"<uuid>\",\n    \"peerId\": \"<string>\",\n    \"joinedAt\": \"<dateTime>\",\n    \"lastActivityAt\": \"<dateTime>\",\n    \"callType\": \"phone\",\n    \"socketId\": \"<uuid>\",\n    \"sessionId\": \"<uuid>\",\n    \"details\": \"<string>\",\n    \"leftQueueAt\": \"<dateTime>\",\n    \"answeredAt\": \"<dateTime>\",\n    \"finishedAt\": \"<dateTime>\",\n    \"cleanedAt\": \"<dateTime>\",\n    \"transferredAt\": \"<dateTime>\",\n    \"transferredTo\": \"<string>\",\n    \"previousCallId\": \"<uuid>\",\n    \"onHoldAt\": \"<dateTime>\",\n    \"transferredToTeam\": \"<uuid>\",\n    \"emptiedAt\": \"<dateTime>\",\n    \"startedAt\": \"<dateTime>\",\n    \"waitingQueueId\": \"<uuid>\"\n  },\n  {\n    \"callId\": \"<uuid>\",\n    \"teamId\": \"<uuid>\",\n    \"peerId\": \"<string>\",\n    \"joinedAt\": \"<dateTime>\",\n    \"lastActivityAt\": \"<dateTime>\",\n    \"callType\": \"video\",\n    \"socketId\": \"<uuid>\",\n    \"sessionId\": \"<uuid>\",\n    \"details\": \"<string>\",\n    \"leftQueueAt\": \"<dateTime>\",\n    \"answeredAt\": \"<dateTime>\",\n    \"finishedAt\": \"<dateTime>\",\n    \"cleanedAt\": \"<dateTime>\",\n    \"transferredAt\": \"<dateTime>\",\n    \"transferredTo\": \"<string>\",\n    \"previousCallId\": \"<uuid>\",\n    \"onHoldAt\": \"<dateTime>\",\n    \"transferredToTeam\": \"<uuid>\",\n    \"emptiedAt\": \"<dateTime>\",\n    \"startedAt\": \"<dateTime>\",\n    \"waitingQueueId\": \"<uuid>\"\n  }\n]",
+                              "createdAt": "2026-10-21T20:23:32.000Z",
+                              "updatedAt": "2026-10-21T20:23:32.000Z",
+                              "uid": "35240-b106ac02-fbb2-4a8e-8bdb-c2c091a60e9b"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:23:32.000Z",
+                          "updatedAt": "2026-10-21T20:23:32.000Z",
+                          "uid": "35240-b68940ac-9017-49f2-98fb-3923455b51d9"
+                        }
+                      ],
+                      "id": "dfbd8c6e-05c1-437f-b4f9-80853bd16238",
+                      "createdAt": "2026-10-21T20:23:32.000Z",
+                      "updatedAt": "2026-10-21T20:23:32.000Z",
+                      "uid": "35240-dfbd8c6e-05c1-437f-b4f9-80853bd16238"
+                    }
+                  ],
+                  "id": "f1ca97bb-8516-4472-84eb-cc5790416c78",
+                  "createdAt": "2026-10-21T20:23:32.000Z",
+                  "updatedAt": "2026-10-21T20:23:32.000Z",
+                  "uid": "35240-f1ca97bb-8516-4472-84eb-cc5790416c78"
+                },
+                {
+                  "name": "calls",
+                  "item": [
+                    {
+                      "name": "{callId}",
+                      "item": [
+                        {
+                          "name": "Get a Call",
+                          "id": "2b2f04d4-7108-4a66-b38f-5b2c6acc9305",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/waiting/:teamId/calls/:callId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "waiting",
+                                ":teamId",
+                                "calls",
+                                ":callId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "918eabe9-0cca-41a9-9575-1c288d53d404",
+                                  "key": "teamId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "a54c8155-65f4-4d4b-8e85-15feeb9f3be3",
+                                  "key": "callId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "7b43c55f-7eb1-43e8-baff-a9de31f54d79",
+                              "name": "Call",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/waiting/:teamId/calls/:callId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "waiting",
+                                    ":teamId",
+                                    "calls",
+                                    ":callId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamId"
+                                    },
+                                    {
+                                      "key": "callId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"callId\": \"<uuid>\",\n  \"teamId\": \"<uuid>\",\n  \"peerId\": \"<string>\",\n  \"joinedAt\": \"<dateTime>\",\n  \"lastActivityAt\": \"<dateTime>\",\n  \"callType\": \"phone\",\n  \"socketId\": \"<uuid>\",\n  \"sessionId\": \"<uuid>\",\n  \"details\": \"<string>\",\n  \"leftQueueAt\": \"<dateTime>\",\n  \"answeredAt\": \"<dateTime>\",\n  \"finishedAt\": \"<dateTime>\",\n  \"cleanedAt\": \"<dateTime>\",\n  \"transferredAt\": \"<dateTime>\",\n  \"transferredTo\": \"<string>\",\n  \"previousCallId\": \"<uuid>\",\n  \"onHoldAt\": \"<dateTime>\",\n  \"transferredToTeam\": \"<uuid>\",\n  \"emptiedAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"waitingQueueId\": \"<uuid>\"\n}",
+                              "createdAt": "2026-10-21T20:23:32.000Z",
+                              "updatedAt": "2026-10-21T20:23:32.000Z",
+                              "uid": "35240-7b43c55f-7eb1-43e8-baff-a9de31f54d79"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:23:32.000Z",
+                          "updatedAt": "2026-10-21T20:23:32.000Z",
+                          "uid": "35240-2b2f04d4-7108-4a66-b38f-5b2c6acc9305"
+                        }
+                      ],
+                      "id": "c5395504-0901-4838-b460-b1ebbf3253f5",
+                      "createdAt": "2026-10-21T20:23:32.000Z",
+                      "updatedAt": "2026-10-21T20:23:32.000Z",
+                      "uid": "35240-c5395504-0901-4838-b460-b1ebbf3253f5"
+                    }
+                  ],
+                  "id": "39d231cf-3995-4453-85d3-efde6d22d188",
+                  "createdAt": "2026-10-21T20:23:32.000Z",
+                  "updatedAt": "2026-10-21T20:23:32.000Z",
+                  "uid": "35240-39d231cf-3995-4453-85d3-efde6d22d188"
+                },
+                {
+                  "name": "Get Currently Waiting Calls",
+                  "id": "81bff94b-1282-44f4-a729-99d97e1e50da",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/waiting/:teamId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "waiting",
+                        ":teamId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c8915e9b-39aa-45bf-ad1b-e9717a4bf070",
+                          "key": "teamId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "fe870978-228a-419d-bf0e-8c461eb3dc1d",
+                      "name": "List of waiting calls",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/waiting/:teamId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "waiting",
+                            ":teamId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "teamId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"callId\": \"<uuid>\",\n    \"teamId\": \"<uuid>\",\n    \"peerId\": \"<string>\",\n    \"joinedAt\": \"<dateTime>\",\n    \"lastActivityAt\": \"<dateTime>\",\n    \"callType\": \"phone\",\n    \"socketId\": \"<uuid>\",\n    \"sessionId\": \"<uuid>\",\n    \"details\": \"<string>\",\n    \"leftQueueAt\": \"<dateTime>\",\n    \"answeredAt\": \"<dateTime>\",\n    \"finishedAt\": \"<dateTime>\",\n    \"cleanedAt\": \"<dateTime>\",\n    \"transferredAt\": \"<dateTime>\",\n    \"transferredTo\": \"<string>\",\n    \"previousCallId\": \"<uuid>\",\n    \"onHoldAt\": \"<dateTime>\",\n    \"transferredToTeam\": \"<uuid>\",\n    \"emptiedAt\": \"<dateTime>\",\n    \"startedAt\": \"<dateTime>\",\n    \"waitingQueueId\": \"<uuid>\"\n  },\n  {\n    \"callId\": \"<uuid>\",\n    \"teamId\": \"<uuid>\",\n    \"peerId\": \"<string>\",\n    \"joinedAt\": \"<dateTime>\",\n    \"lastActivityAt\": \"<dateTime>\",\n    \"callType\": \"video\",\n    \"socketId\": \"<uuid>\",\n    \"sessionId\": \"<uuid>\",\n    \"details\": \"<string>\",\n    \"leftQueueAt\": \"<dateTime>\",\n    \"answeredAt\": \"<dateTime>\",\n    \"finishedAt\": \"<dateTime>\",\n    \"cleanedAt\": \"<dateTime>\",\n    \"transferredAt\": \"<dateTime>\",\n    \"transferredTo\": \"<string>\",\n    \"previousCallId\": \"<uuid>\",\n    \"onHoldAt\": \"<dateTime>\",\n    \"transferredToTeam\": \"<uuid>\",\n    \"emptiedAt\": \"<dateTime>\",\n    \"startedAt\": \"<dateTime>\",\n    \"waitingQueueId\": \"<uuid>\"\n  }\n]",
+                      "createdAt": "2026-10-21T20:23:32.000Z",
+                      "updatedAt": "2026-10-21T20:23:32.000Z",
+                      "uid": "35240-fe870978-228a-419d-bf0e-8c461eb3dc1d"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:23:32.000Z",
+                  "updatedAt": "2026-10-21T20:23:32.000Z",
+                  "uid": "35240-81bff94b-1282-44f4-a729-99d97e1e50da"
+                }
+              ],
+              "id": "1a00dea6-439d-457b-ba52-0cca2a80cc41",
+              "createdAt": "2026-10-21T20:23:32.000Z",
+              "updatedAt": "2026-10-21T20:23:32.000Z",
+              "uid": "35240-1a00dea6-439d-457b-ba52-0cca2a80cc41"
+            }
+          ],
+          "id": "9ca8f682-157e-4e9f-8dc4-73bf9138e842",
+          "createdAt": "2026-10-21T20:23:32.000Z",
+          "updatedAt": "2026-10-21T20:23:32.000Z",
+          "uid": "35240-9ca8f682-157e-4e9f-8dc4-73bf9138e842"
+        }
+      ],
+      "id": "72da5073-3552-4d85-9bf3-d0368c760144",
+      "createdAt": "2026-10-21T20:23:32.000Z",
+      "updatedAt": "2026-10-21T20:23:32.000Z",
+      "uid": "35240-72da5073-3552-4d85-9bf3-d0368c760144"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.coviu.com"
+    }
+  ]
+}

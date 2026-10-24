@@ -1,0 +1,837 @@
+{
+  "info": {
+    "_postman_id": "162fd1e0-baf9-4c3c-a62e-158f9c1b65cb",
+    "name": "Coviu REST Collections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:13.000Z",
+    "updatedAt": "2026-10-21T20:23:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-162fd1e0-baf9-4c3c-a62e-158f9c1b65cb"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "collections",
+          "item": [
+            {
+              "name": "{teamId}",
+              "item": [
+                {
+                  "name": "collection",
+                  "item": [
+                    {
+                      "name": "{collectionId}",
+                      "item": [
+                        {
+                          "name": "submission",
+                          "item": [
+                            {
+                              "name": "{submissionId}",
+                              "item": [
+                                {
+                                  "name": "file",
+                                  "item": [
+                                    {
+                                      "name": "{fileId}",
+                                      "item": [
+                                        {
+                                          "name": "Get the binary file for a SubmissionFile",
+                                          "id": "bb8dda32-98ce-441a-b2c0-c722b9ad29ea",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "video/webm"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v1/collections/:teamId/collection/:collectionId/submission/:submissionId/file/:fileId?quality=480p",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v1",
+                                                "collections",
+                                                ":teamId",
+                                                "collection",
+                                                ":collectionId",
+                                                "submission",
+                                                ":submissionId",
+                                                "file",
+                                                ":fileId"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "key": "quality",
+                                                  "value": "480p"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "61453f24-3960-4323-9826-8acdde1b7051",
+                                                  "key": "teamId",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "264c14d8-91c5-4852-84ac-7a4262f763c9",
+                                                  "key": "collectionId",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "b0650e54-b429-43ac-b7f1-b0efddf2e2b5",
+                                                  "key": "submissionId",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "44d3089b-aa25-4e0d-9afa-d23d9b767188",
+                                                  "key": "fileId",
+                                                  "value": "<uuid>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "13db47f9-7efb-420e-80ff-f51477e398af",
+                                              "name": "Video Recording",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "video/webm"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/v1/collections/:teamId/collection/:collectionId/submission/:submissionId/file/:fileId?quality=480p",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "v1",
+                                                    "collections",
+                                                    ":teamId",
+                                                    "collection",
+                                                    ":collectionId",
+                                                    "submission",
+                                                    ":submissionId",
+                                                    "file",
+                                                    ":fileId"
+                                                  ],
+                                                  "query": [
+                                                    {
+                                                      "key": "quality",
+                                                      "value": "480p"
+                                                    }
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "teamId"
+                                                    },
+                                                    {
+                                                      "key": "collectionId"
+                                                    },
+                                                    {
+                                                      "key": "submissionId"
+                                                    },
+                                                    {
+                                                      "key": "fileId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "video/webm"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "<binary>",
+                                              "createdAt": "2026-10-21T20:23:13.000Z",
+                                              "updatedAt": "2026-10-21T20:23:13.000Z",
+                                              "uid": "35240-13db47f9-7efb-420e-80ff-f51477e398af"
+                                            },
+                                            {
+                                              "id": "c8fb1313-5c17-40f9-be5d-50a64c786b23",
+                                              "name": "Video Recording",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "video/webm"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/v1/collections/:teamId/collection/:collectionId/submission/:submissionId/file/:fileId?quality=480p",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "v1",
+                                                    "collections",
+                                                    ":teamId",
+                                                    "collection",
+                                                    ":collectionId",
+                                                    "submission",
+                                                    ":submissionId",
+                                                    "file",
+                                                    ":fileId"
+                                                  ],
+                                                  "query": [
+                                                    {
+                                                      "key": "quality",
+                                                      "value": "480p"
+                                                    }
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "teamId"
+                                                    },
+                                                    {
+                                                      "key": "collectionId"
+                                                    },
+                                                    {
+                                                      "key": "submissionId"
+                                                    },
+                                                    {
+                                                      "key": "fileId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "Partial Content",
+                                              "code": 206,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "video/webm"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "<binary>",
+                                              "createdAt": "2026-10-21T20:23:13.000Z",
+                                              "updatedAt": "2026-10-21T20:23:13.000Z",
+                                              "uid": "35240-c8fb1313-5c17-40f9-be5d-50a64c786b23"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-21T20:23:13.000Z",
+                                          "updatedAt": "2026-10-21T20:23:13.000Z",
+                                          "uid": "35240-bb8dda32-98ce-441a-b2c0-c722b9ad29ea"
+                                        }
+                                      ],
+                                      "id": "4067d211-2ca4-4b81-8ec7-d4f9c121a905",
+                                      "createdAt": "2026-10-21T20:23:13.000Z",
+                                      "updatedAt": "2026-10-21T20:23:13.000Z",
+                                      "uid": "35240-4067d211-2ca4-4b81-8ec7-d4f9c121a905"
+                                    }
+                                  ],
+                                  "id": "7d60480e-aee2-423a-98ec-189968dbe4ea",
+                                  "createdAt": "2026-10-21T20:23:13.000Z",
+                                  "updatedAt": "2026-10-21T20:23:13.000Z",
+                                  "uid": "35240-7d60480e-aee2-423a-98ec-189968dbe4ea"
+                                },
+                                {
+                                  "name": "Get a Submission",
+                                  "id": "37918369-e2df-442b-aab4-19fa9ec68d59",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/collections/:teamId/collection/:collectionId/submission/:submissionId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "collections",
+                                        ":teamId",
+                                        "collection",
+                                        ":collectionId",
+                                        "submission",
+                                        ":submissionId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e2fb506e-d426-4136-ad02-74f11d451526",
+                                          "key": "teamId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "b5c79a3e-ee98-4afb-8e8d-1d46c342e719",
+                                          "key": "collectionId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "e1cb0a81-1b39-4e17-990a-97c5db00804c",
+                                          "key": "submissionId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "f1be021e-eb81-4e15-840d-445e5fd2b4a6",
+                                      "name": "Submission",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/collections/:teamId/collection/:collectionId/submission/:submissionId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "collections",
+                                            ":teamId",
+                                            "collection",
+                                            ":collectionId",
+                                            "submission",
+                                            ":submissionId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "teamId"
+                                            },
+                                            {
+                                              "key": "collectionId"
+                                            },
+                                            {
+                                              "key": "submissionId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"files\": [\n    {\n      \"id\": \"<string>\",\n      \"metadata\": {},\n      \"size\": \"<number>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"metadata\": {},\n      \"size\": \"<number>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"secure_collection_id\": \"<uuid>\",\n  \"item_submission_id\": \"<uuid>\",\n  \"session_id\": \"<uuid>\",\n  \"collection_location\": \"<string>\",\n  \"submitting_user_id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"locked_at\": \"<dateTime>\",\n  \"action_status\": \"<boolean>\"\n}",
+                                      "createdAt": "2026-10-21T20:23:13.000Z",
+                                      "updatedAt": "2026-10-21T20:23:13.000Z",
+                                      "uid": "35240-f1be021e-eb81-4e15-840d-445e5fd2b4a6"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T20:23:13.000Z",
+                                  "updatedAt": "2026-10-21T20:23:13.000Z",
+                                  "uid": "35240-37918369-e2df-442b-aab4-19fa9ec68d59"
+                                }
+                              ],
+                              "id": "60daeae4-4bed-470a-a9cb-4712140ff0de",
+                              "createdAt": "2026-10-21T20:23:13.000Z",
+                              "updatedAt": "2026-10-21T20:23:13.000Z",
+                              "uid": "35240-60daeae4-4bed-470a-a9cb-4712140ff0de"
+                            }
+                          ],
+                          "id": "1c8cfff0-c416-49c7-a616-22bd54ce2f5a",
+                          "createdAt": "2026-10-21T20:23:13.000Z",
+                          "updatedAt": "2026-10-21T20:23:13.000Z",
+                          "uid": "35240-1c8cfff0-c416-49c7-a616-22bd54ce2f5a"
+                        },
+                        {
+                          "name": "recording",
+                          "item": [
+                            {
+                              "name": "{submissionId}",
+                              "item": [
+                                {
+                                  "name": "Get the binary file for an Audio Recording",
+                                  "id": "3876e0cd-f19c-411d-af63-e2dde9c7ba03",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "audio/webm"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/collections/:teamId/collection/:collectionId/recording/:submissionId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "collections",
+                                        ":teamId",
+                                        "collection",
+                                        ":collectionId",
+                                        "recording",
+                                        ":submissionId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "03ccaa59-498b-4c87-9d1d-c6b3957ddc71",
+                                          "key": "teamId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "a438f588-1396-403b-870b-a51b47e49c51",
+                                          "key": "collectionId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "4f961ffc-13c0-4604-ae53-47909468b1af",
+                                          "key": "submissionId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "cc43bd90-39ce-4750-8216-1e520a5ead16",
+                                      "name": "Audio Recording",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "audio/webm"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/collections/:teamId/collection/:collectionId/recording/:submissionId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "collections",
+                                            ":teamId",
+                                            "collection",
+                                            ":collectionId",
+                                            "recording",
+                                            ":submissionId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "teamId"
+                                            },
+                                            {
+                                              "key": "collectionId"
+                                            },
+                                            {
+                                              "key": "submissionId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "audio/webm"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "<binary>",
+                                      "createdAt": "2026-10-21T20:23:13.000Z",
+                                      "updatedAt": "2026-10-21T20:23:13.000Z",
+                                      "uid": "35240-cc43bd90-39ce-4750-8216-1e520a5ead16"
+                                    },
+                                    {
+                                      "id": "0b76280e-4e38-4923-8588-f61d6479549c",
+                                      "name": "Audio Recording",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "audio/webm"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/collections/:teamId/collection/:collectionId/recording/:submissionId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "collections",
+                                            ":teamId",
+                                            "collection",
+                                            ":collectionId",
+                                            "recording",
+                                            ":submissionId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "teamId"
+                                            },
+                                            {
+                                              "key": "collectionId"
+                                            },
+                                            {
+                                              "key": "submissionId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Partial Content",
+                                      "code": 206,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "audio/webm"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "<binary>",
+                                      "createdAt": "2026-10-21T20:23:13.000Z",
+                                      "updatedAt": "2026-10-21T20:23:13.000Z",
+                                      "uid": "35240-0b76280e-4e38-4923-8588-f61d6479549c"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T20:23:13.000Z",
+                                  "updatedAt": "2026-10-21T20:23:13.000Z",
+                                  "uid": "35240-3876e0cd-f19c-411d-af63-e2dde9c7ba03"
+                                }
+                              ],
+                              "id": "18113505-135e-4c97-bb78-6a9ccb334c42",
+                              "createdAt": "2026-10-21T20:23:13.000Z",
+                              "updatedAt": "2026-10-21T20:23:13.000Z",
+                              "uid": "35240-18113505-135e-4c97-bb78-6a9ccb334c42"
+                            }
+                          ],
+                          "id": "281f74c6-31c1-4050-adb0-07510d63f976",
+                          "createdAt": "2026-10-21T20:23:13.000Z",
+                          "updatedAt": "2026-10-21T20:23:13.000Z",
+                          "uid": "35240-281f74c6-31c1-4050-adb0-07510d63f976"
+                        },
+                        {
+                          "name": "List the Submissions for a Collection",
+                          "id": "f79694f1-1577-4b89-a492-93fbed940dc4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/collections/:teamId/collection/:collectionId?from=<dateTime>&until=<dateTime>&filter=<string>&limit=20&offset=0&order=asc&orderBy=created_at",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "collections",
+                                ":teamId",
+                                "collection",
+                                ":collectionId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "ISO 8601 format: 1970-01-01T01:00:00Z",
+                                  "key": "from",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "ISO 8601 format: 1970-01-01T01:00:00Z",
+                                  "key": "until",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "key": "filter",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "order",
+                                  "value": "asc"
+                                },
+                                {
+                                  "key": "orderBy",
+                                  "value": "created_at"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1f033ecb-2477-4690-b9d8-9ff16991e746",
+                                  "key": "teamId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "2817e20a-2831-44b8-a22a-0160d810c6b2",
+                                  "key": "collectionId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "439015fb-ae56-4692-94a0-b66572f0f513",
+                              "name": "Collection",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/collections/:teamId/collection/:collectionId?from=<dateTime>&until=<dateTime>&filter=<string>&limit=20&offset=0&order=asc&orderBy=created_at",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "collections",
+                                    ":teamId",
+                                    "collection",
+                                    ":collectionId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "ISO 8601 format: 1970-01-01T01:00:00Z",
+                                      "key": "from",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "ISO 8601 format: 1970-01-01T01:00:00Z",
+                                      "key": "until",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "key": "filter",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "limit",
+                                      "value": "20"
+                                    },
+                                    {
+                                      "key": "offset",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "order",
+                                      "value": "asc"
+                                    },
+                                    {
+                                      "key": "orderBy",
+                                      "value": "created_at"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamId"
+                                    },
+                                    {
+                                      "key": "collectionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"secure_collection_id\": \"<uuid>\",\n      \"item_submission_id\": \"<uuid>\",\n      \"session_id\": \"<uuid>\",\n      \"collection_location\": \"<string>\",\n      \"submitting_user_id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"locked_at\": \"<dateTime>\",\n      \"action_status\": \"<boolean>\"\n    },\n    {\n      \"secure_collection_id\": \"<uuid>\",\n      \"item_submission_id\": \"<uuid>\",\n      \"session_id\": \"<uuid>\",\n      \"collection_location\": \"<string>\",\n      \"submitting_user_id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"locked_at\": \"<dateTime>\",\n      \"action_status\": \"<boolean>\"\n    }\n  ],\n  \"total\": \"<number>\"\n}",
+                              "createdAt": "2026-10-21T20:23:13.000Z",
+                              "updatedAt": "2026-10-21T20:23:13.000Z",
+                              "uid": "35240-439015fb-ae56-4692-94a0-b66572f0f513"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:23:13.000Z",
+                          "updatedAt": "2026-10-21T20:23:13.000Z",
+                          "uid": "35240-f79694f1-1577-4b89-a492-93fbed940dc4"
+                        }
+                      ],
+                      "id": "27bfad86-38a5-4042-806d-91140d2e9d7a",
+                      "createdAt": "2026-10-21T20:23:13.000Z",
+                      "updatedAt": "2026-10-21T20:23:13.000Z",
+                      "uid": "35240-27bfad86-38a5-4042-806d-91140d2e9d7a"
+                    }
+                  ],
+                  "id": "6d21ce41-8261-4b48-98af-e11f1d4f768a",
+                  "createdAt": "2026-10-21T20:23:13.000Z",
+                  "updatedAt": "2026-10-21T20:23:13.000Z",
+                  "uid": "35240-6d21ce41-8261-4b48-98af-e11f1d4f768a"
+                },
+                {
+                  "name": "Retrieve the Collections for a Team",
+                  "id": "2bb0d1d9-77b5-446c-86ae-cd59df3e2f08",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/collections/:teamId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "collections",
+                        ":teamId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e6ecb6af-a164-4965-9dd5-d7ad76549153",
+                          "key": "teamId",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "bea3d3f6-8903-4e2a-a7d8-8904bd9c20c5",
+                      "name": "Collection",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/collections/:teamId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "collections",
+                            ":teamId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "teamId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"team_id\": \"<uuid>\",\n    \"collection_id\": \"<uuid>\",\n    \"collection_reference\": \"<string>\",\n    \"name\": \"<string>\",\n    \"read_setting\": \"team\",\n    \"delete_setting\": \"restricted\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"team_id\": \"<uuid>\",\n    \"collection_id\": \"<uuid>\",\n    \"collection_reference\": \"<string>\",\n    \"name\": \"<string>\",\n    \"read_setting\": \"team\",\n    \"delete_setting\": \"restricted\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-10-21T20:23:13.000Z",
+                      "updatedAt": "2026-10-21T20:23:13.000Z",
+                      "uid": "35240-bea3d3f6-8903-4e2a-a7d8-8904bd9c20c5"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:23:13.000Z",
+                  "updatedAt": "2026-10-21T20:23:13.000Z",
+                  "uid": "35240-2bb0d1d9-77b5-446c-86ae-cd59df3e2f08"
+                }
+              ],
+              "id": "783df4b7-3546-48ae-bf10-d6845bcaf1d0",
+              "createdAt": "2026-10-21T20:23:13.000Z",
+              "updatedAt": "2026-10-21T20:23:13.000Z",
+              "uid": "35240-783df4b7-3546-48ae-bf10-d6845bcaf1d0"
+            }
+          ],
+          "id": "88f789f9-87f5-4f6e-bc45-69e5b6f4652b",
+          "createdAt": "2026-10-21T20:23:13.000Z",
+          "updatedAt": "2026-10-21T20:23:13.000Z",
+          "uid": "35240-88f789f9-87f5-4f6e-bc45-69e5b6f4652b"
+        }
+      ],
+      "id": "09d1f6e8-18ea-4100-bdf4-bf7fdef2d007",
+      "createdAt": "2026-10-21T20:23:13.000Z",
+      "updatedAt": "2026-10-21T20:23:13.000Z",
+      "uid": "35240-09d1f6e8-18ea-4100-bdf4-bf7fdef2d007"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.coviu.com"
+    }
+  ]
+}
