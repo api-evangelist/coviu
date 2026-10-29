@@ -1,4 +1,4 @@
-# Coviu (coviu)
+# Coviu
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,92 +64,141 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Coviu is an Australian telehealth company (Sydney; spun out of CSIRO's Data61) providing a purpose-built, browser-based video consultation platform for healthcare and allied-health providers. For developers, Coviu exposes an OAuth2-protected REST API at `https://api.coviu.com` for creating and managing video consultation Sessions and Participants, monitoring Waiting Area queues, retrieving Collections (submissions, files, and audio recordings), and receiving event Webhooks — plus an in-call Plugin (Apps) API and embedded iframe mode. Coviu is a telehealth video/interoperability layer, not an EHR or HL7 FHIR data platform; its documented public surface is REST + webhooks.
+Coviu is an Australian telehealth company, headquartered in Sydney and spun out of CSIRO's Data61, that provides a purpose-built video consultation platform for healthcare providers, allied health, and enterprise clinical networks. Its browser-based, WebRTC video calling supports virtual care workflows including waiting rooms, in-call clinical tools, screen and file sharing, medical device integrations, and payments. For developers, Coviu ships a secure OAuth2-protected REST API (base https://api.coviu.com) that lets applications create and manage video consultation Sessions and Participants, monitor Waiting Area queues in real time, retrieve Collections (submissions, files, and audio recordings), and receive event Webhooks, plus an in-call Plugin API and embedded iframe mode. Coviu is a telehealth video/interoperability layer rather than an EHR or FHIR data platform, so its documented public surface is REST + webhooks, not HL7 FHIR.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/coviu/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/coviu/refs/heads/main/apis.yml)
+**Areas:** Healthcare · Telehealth · Australia · Virtual Care · Video · WebRTC · Appointments · Remote Monitoring · REST
 
-## Tags
+## Coviu on APIs.io
 
-- Healthcare
-- Telehealth
-- Australia
-- Virtual Care
-- Video
-- WebRTC
-- Appointments
-- Remote Monitoring
-- REST
+Everything profiled for Coviu is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/coviu/](https://apis.io/providers/coviu/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-07-24
-- **Modified:** 2026-07-24
+- [Coviu Plugin API](https://apis.io/apis/coviu/coviu-plugin-api/) — In-call Plugin (Apps) API for building custom experiences inside the Coviu video room — adding UI elements, connecting to third-party systems, and enriching…
+- [Coviu Auth API](https://apis.io/apis/coviu/coviu-auth-api/) — The Auth API from Coviu — 1 operation(s) for auth.
+- [Coviu Collections API](https://apis.io/apis/coviu/coviu-collections-api/) — The Collections API from Coviu — 5 operation(s) for collections.
+- [Coviu Participants API](https://apis.io/apis/coviu/coviu-participants-api/) — The Participants API from Coviu — 2 operation(s) for participants.
+- [Coviu Sessions API](https://apis.io/apis/coviu/coviu-sessions-api/) — The Sessions API from Coviu — 3 operation(s) for sessions.
+- [Coviu Waiting Area API](https://apis.io/apis/coviu/coviu-waiting-area-api/) — The Waiting Area API from Coviu — 3 operation(s) for waiting area.
+- [Coviu Webhook Requests API](https://apis.io/apis/coviu/coviu-webhook-requests-api/) — The Webhook Requests API from Coviu — 1 operation(s) for webhook requests.
 
-## APIs
+### Published properties
 
-### Coviu Sessions API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, list, retrieve, update, and cancel Coviu video consultation Sessions, and pull a Session Summary with participant entry/exit timing.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://coviu.readme.io/reference/sessions](https://coviu.readme.io/reference/sessions)
-- **Base URL:** `https://api.coviu.com/v1`
+Event-driven and webhook contracts.
 
-#### Properties
+- [Coviu Webhooks](https://apis.io/asyncapis/coviu/coviu-webhooks/)
 
-- [OpenAPI](openapi/coviu-rest-api-openapi.json)
-- [Documentation](https://coviu.readme.io/reference/sessions)
-- [API Reference](https://coviu.readme.io/reference/createsession)
-- [Authentication](https://coviu.readme.io/reference/access-token)
+#### MCP servers (1)
 
-### Coviu Participants API
+Model Context Protocol servers that expose the API to agents.
 
-List, add, retrieve, update, and cancel Participants on a Session, controlling per-participant join links, names, avatars, and host/guest roles.
+- [coviu](https://apis.io/servers/coviu/coviu/)
 
-- **Human URL:** [https://coviu.readme.io/reference/listparticipants](https://coviu.readme.io/reference/listparticipants)
-- **Base URL:** `https://api.coviu.com/v1`
+#### Agentic access (1)
 
-### Coviu Waiting Area API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Read the Waiting Area in real time — currently waiting calls for a team, waiting calls for a queue, and individual call detail — for virtual reception and triage.
+- [Coviu Agentic Access](https://apis.io/agentic-access/coviu/coviu-agentic-access/)
 
-- **Human URL:** [https://coviu.readme.io/reference/getcurrentlywaitingcalls](https://coviu.readme.io/reference/getcurrentlywaitingcalls)
-- **Base URL:** `https://api.coviu.com/v1`
+#### Collections (1)
 
-### Coviu Collections API
+Postman and Open Collection request collections.
 
-Retrieve a team's Collections and their Submissions, including submission files and audio recordings captured during consultations.
+- [Coviu REST API](https://apis.io/collections/coviu/open-coviu-rest-api/)
 
-- **Human URL:** [https://coviu.readme.io/reference/collections](https://coviu.readme.io/reference/collections)
-- **Base URL:** `https://api.coviu.com/v1`
+#### Overlays (1)
 
-### Coviu Webhooks
+OpenAPI overlays, including conversational phrasing for each operation.
 
-Real-time event notifications delivered as HTTP POST callbacks to a URL you configure, firing when relevant Coviu events occur (e.g. patient arrival, call conclusion).
+- [Coviu Rest Api Overlay](https://apis.io/overlays/coviu/coviu-rest-api-overlay/)
 
-- **Human URL:** [https://coviu.readme.io/reference/webhooks-documentation](https://coviu.readme.io/reference/webhooks-documentation)
+#### Security (3)
 
-### Coviu Plugin API
+Authentication, trust centre, and vulnerability disclosure.
 
-In-call Plugin (Apps) API for building custom experiences inside the Coviu video room — adding UI elements and connecting to third-party systems.
+- [Coviu Authentication](https://apis.io/security/coviu/coviu-authentication/)
+- [Coviu Domain Security](https://apis.io/security/coviu/coviu-domain-security/)
+- [Coviu Trust Center](https://apis.io/security/coviu/coviu-trust-center/)
 
-- **Human URL:** [https://coviu.readme.io/reference/getting-started-with-your-api-1](https://coviu.readme.io/reference/getting-started-with-your-api-1)
+#### OAuth scopes (1)
 
-## Common Properties
+The permissions the API asks for.
+
+- [Coviu Scopes](https://apis.io/scopes/coviu/coviu-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.coviu.com/)
-- [Developer Portal](https://coviu.readme.io/)
 - [Documentation](https://coviu.readme.io/reference/the-coviu-rest-api)
-- [Getting Started](https://coviu.readme.io/reference/getting-started-with-your-api-1)
-- [GitHub Organization](https://github.com/coviu)
-- [LinkedIn](https://www.linkedin.com/company/coviu)
-- [Status Page](https://status.coviu.com/)
+- [Getting started](https://coviu.readme.io/reference/getting-started-with-your-api-1)
+- [API reference](https://coviu.readme.io/reference/the-coviu-rest-api)
 - [Pricing](https://www.coviu.com/en-au/pricing)
-- [Blog](https://www.coviu.com/blog)
+- [Sign up](https://signup.coviu.com/)
 - [Support](https://help.coviu.com/)
-- [Terms of Service](https://www.coviu.com/terms)
-- [Privacy Policy](https://www.coviu.com/en-au/privacy-policy)
+- [Blog](https://www.coviu.com/blog)
+- [Compliance](https://www.coviu.com/en-au/compliance-and-security)
+- [Terms of service](https://www.coviu.com/terms)
+- [Privacy policy](https://www.coviu.com/en-au/privacy-policy)
+- [GitHub](https://github.com/coviu)
+- [Status](https://status.coviu.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 48.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 51.2 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 45.4 |
+| Access clarity | 60.5 |
+
+**Agent readiness 30.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 36.7** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/coviu/](https://apis.io/providers/coviu/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Coviu: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/coviu/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
